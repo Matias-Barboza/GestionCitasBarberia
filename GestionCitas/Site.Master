@@ -1,0 +1,62 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="GestionCitas.Site" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Ink Barbería</title>
+
+    <link href="/css/styles.css" rel="stylesheet" />
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+
+        <header>
+            <nav class="navbar" aria-label="Menú de navegación">
+                <ul class="navbar-ul">
+                    <li class="navbar-element"><a href="#">INICIO</a></li>
+                    <li class="navbar-element"><a href="#">SOBRE NOSOTROS</a></li>
+                    <li class="navbar-element dropdown">
+                        <a href="#">GESTIONAR CITA</a>
+                        <div class="dropdown-content">
+                            <ul class="navbar-ul">
+                                <li><a href="#">RESERVAR CITA</a></li>
+                                <li><a href="#">CANCELAR CITA</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+
+        <footer>
+            <div>
+                <section>
+                    <%-- CONTACTO --%>
+                </section>
+
+                <section>
+                    <%-- HORARIOS --%>
+                </section>
+
+                <section>
+                    <%-- UBICACIÓN --%>
+                </section>
+
+                <section>
+                    <%-- REDES --%>
+                </section>
+            </div>
+        </footer>
+    </form>
+</body>
+</html>
