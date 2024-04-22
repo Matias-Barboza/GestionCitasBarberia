@@ -19,7 +19,7 @@
         <header>
 
             <section class="content-header">
-                <h2>INK Barbería</h2>
+                <h2 class="header-title">INK Barbería</h2>
 
                 <nav class="navbar" aria-label="Menú de navegación">
                     <ul class="navbar-ul">
@@ -71,7 +71,7 @@
                 <section class="footer-column" aria-label="Ubicación">
                     <%-- UBICACIÓN --%>
                     <header>
-                        <h3>Nuesta ubicación</h3>
+                        <h3>Nuestra ubicación</h3>
                     </header>
                     <p>French 400</p>
                 </section>
