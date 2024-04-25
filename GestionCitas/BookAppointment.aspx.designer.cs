@@ -15,39 +15,66 @@ namespace GestionCitas
     {
 
         /// <summary>
-        /// Control name.
+        /// Control NameTextBox.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox name;
+        protected global::System.Web.UI.WebControls.TextBox NameTextBox;
 
         /// <summary>
-        /// Control surname.
+        /// Control SurnameTextBox.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox surname;
+        protected global::System.Web.UI.WebControls.TextBox SurnameTextBox;
 
         /// <summary>
-        /// Control pruebaBttn.
+        /// Control MailTextBox.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button pruebaBttn;
+        protected global::System.Web.UI.WebControls.TextBox MailTextBox;
 
         /// <summary>
-        /// Control prueba.
+        /// Control Calendar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label prueba;
+        protected global::System.Web.UI.WebControls.Calendar Calendar;
+
+        /// <summary>
+        /// Control HoursDropDownList.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList HoursDropDownList;
+
+        /// <summary>
+        /// Control ServicesDropDownList.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ServicesDropDownList;
+
+        /// <summary>
+        /// Control AmountTextBox.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox AmountTextBox;
     }
 }

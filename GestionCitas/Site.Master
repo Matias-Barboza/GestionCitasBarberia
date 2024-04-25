@@ -32,7 +32,7 @@
                                 <a class="main-navbar-element" href="#">GESTIONAR CITA</a>
                                 <div class="dropdown-content">
                                     <ul class="navbar-ul">
-                                        <li><a href="#">RESERVAR CITA</a></li>
+                                        <li><a href="BookAppointment.aspx">RESERVAR CITA</a></li>
                                         <li><a href="#">CANCELAR CITA</a></li>
                                     </ul>
                                 </div>

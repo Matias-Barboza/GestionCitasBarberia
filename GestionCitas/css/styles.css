@@ -34,6 +34,10 @@
     padding: 20px 30px 20px 30px;
     text-align: center;
 }
+.ptb-70{
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
 .paragraph{
     color: white;
     font-size: 17px;
