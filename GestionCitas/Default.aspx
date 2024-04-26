@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <%--------------------------------------  FOTO DE INICIO  ----------------------------------------------------------------------%>
-    <section class="inicio">
+    <section id="inicio" class="inicio">
         <div class="inicio-content">
             <h1 class="inicio-title">INK BARBERÍA</h1>
             <img class="img-inicio" src="/imgs/img_inicio_marca.png" alt="Alternate Text" />
@@ -14,7 +14,7 @@
     </section>
 
     <%--------------------------------------  SOBRE NOSOTROS Y NUESTRO LUGAR  ------------------------------------------------------%>
-    <section class="information-section">
+    <section id="sobre-nosotros" class="information-section">
 
         <div class="section-information-content">
 

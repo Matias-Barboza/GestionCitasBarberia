@@ -26,14 +26,14 @@
 
                     <nav class="navbar" aria-label="Menú de navegación">
                         <ul class="navbar-ul">
-                            <li class="navbar-element"><a class="main-navbar-element" href="#">INICIO</a></li>
-                            <li class="navbar-element"><a class="main-navbar-element" href="#">SOBRE NOSOTROS</a></li>
+                            <li class="navbar-element"><a class="main-navbar-element" href="Default.aspx#inicio">INICIO</a></li>
+                            <li class="navbar-element"><a class="main-navbar-element" href="Default.aspx#sobre-nosotros">SOBRE NOSOTROS</a></li>
                             <li class="navbar-element dropdown">
                                 <a class="main-navbar-element" href="#">GESTIONAR CITA</a>
                                 <div class="dropdown-content">
                                     <ul class="navbar-ul">
                                         <li><a href="BookAppointment.aspx">RESERVAR CITA</a></li>
-                                        <li><a href="#">CANCELAR CITA</a></li>
+                                        <li><a href="CancelAppointment.aspx">CANCELAR CITA</a></li>
                                     </ul>
                                 </div>
                             </li>

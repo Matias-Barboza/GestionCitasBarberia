@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="BookAppointment.aspx" />
+    <Content Include="CancelAppointment.aspx" />
     <Content Include="css\styles.css" />
     <Content Include="Default.aspx" />
     <Content Include="Web.config" />
@@ -79,6 +80,13 @@
     </Compile>
     <Compile Include="BookAppointment.aspx.designer.cs">
       <DependentUpon>BookAppointment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CancelAppointment.aspx.cs">
+      <DependentUpon>CancelAppointment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CancelAppointment.aspx.designer.cs">
+      <DependentUpon>CancelAppointment.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

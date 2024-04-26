@@ -15,11 +15,11 @@
 
             <h3>Reservá tu cita</h3>
 
-            <fieldset>
+            <fieldset class="form-border">
 
                 <%-- ********************************************** INFORMACION DEL CLIENTE ********************************************** --%>
 
-                <legend>Información personal</legend>
+                <legend class="form-legend"><span class="custom-legend">Información personal</span></legend>
                 <div class="input-data-row">
 
                     <div class="input-data-column">
@@ -55,42 +55,49 @@
 
             <%-- ********************************************** INFORMACION DE LA CITA ********************************************** --%>
 
-            <fieldset>
+            <fieldset class="form-border">
 
-                <legend>Información de la cita</legend>
+                <legend class="form-legend">Información de la cita</legend>
                 <div class="input-data-row">
 
                     <%-- COLUMNA DE FECHA Y HORA DE LA CITA --%>
                     <div class="input-data-column">
 
                         <asp:Label Text="Fecha a reservar:" runat="server" for="date" CssClass="form-label" />
-                        <asp:Calendar ID="Calendar" runat="server"></asp:Calendar>
+                        <asp:Calendar ID="Calendar" runat="server" CssClass="calendar"  BorderColor="#2B3438" NextMonthText="&gt;" BackColor="#2B3438" BorderWidth="2px" Font-Names="Work Sans" Font-Size="14pt" ForeColor="White" Height="200px" NextPrevFormat="FullMonth" Width="100%">
+                            <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
+                            <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />
+                            <OtherMonthDayStyle ForeColor="#999999" />
+                            <SelectedDayStyle BackColor="#333399" ForeColor="White" />
+                            <TitleStyle BackColor="White" BorderColor="Black" BorderWidth="4px" Font-Bold="True" Font-Size="12pt" ForeColor="#333399" />
+                            <TodayDayStyle BackColor="#CCCCCC" />
+                        </asp:Calendar>
 
                     </div>
 
                     <div class="input-data-column">
 
-                        <asp:Label Text="Horario:" runat="server" for="hours" CssClass="form-label" />
-                        <asp:DropDownList name="hours" ID="HoursDropDownList" runat="server"></asp:DropDownList>
+                        <%-- COLUMNA DE HORARI, SERVICIO Y MONTO A SEÑAR --%>
+                        <div class="input-data-column">
 
-                    </div>
+                            <asp:Label Text="Horario:" runat="server" for="hours" CssClass="form-label" />
+                            <asp:DropDownList name="hours" ID="HoursDropDownList" runat="server" CssClass="form-control"></asp:DropDownList>
 
-                </div>
+                        </div>
 
-                <div class="input-data-row">
+                        <div class="input-data-column">
 
-                    <%-- COLUMNA DE SERVICIO Y MONTO A SEÑAR --%>
-                    <div class="input-data-column">
+                            <asp:Label Text="Servicio:" runat="server" for="service" CssClass="form-label" />
+                            <asp:DropDownList name="service" ID="ServicesDropDownList" runat="server" CssClass="form-control"></asp:DropDownList>
 
-                        <asp:Label Text="Servicio:" runat="server" for="service" CssClass="form-label" />
-                        <asp:DropDownList name="service" ID="ServicesDropDownList" runat="server"></asp:DropDownList>
+                        </div>
 
-                    </div>
-                    
-                    <div class="input-data-column">
+                        <div class="input-data-column">
 
-                        <asp:Label Text="Monto a señar:" runat="server" for="amount" CssClass="form-label" />
-                        <asp:TextBox name="amount" ID="AmountTextBox" runat="server"></asp:TextBox>
+                            <asp:Label Text="Monto a señar:" runat="server" for="amount" CssClass="form-label" />
+                            <asp:TextBox name="amount" ID="AmountTextBox" runat="server" CssClass="form-control"></asp:TextBox>
+
+                        </div>
 
                     </div>
 

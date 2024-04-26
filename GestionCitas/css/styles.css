@@ -5,6 +5,7 @@
 :root {
     --bg-color: #F5F2EB;
     --header-bg-color: #1E2427;
+    --details-color: #6E5C3D;
 }
 
 /* ---------------------------------------------- ALL DOCUMENT --------------------------------------------------------------------------------- */
@@ -188,17 +189,44 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 0 10px;
+    padding: 10px 10px;
+}
+.form-border {
+    margin: 20px 0 0 10px;
+    border: 2px solid #2B3438;
+    border-radius: 20px;
+    padding: 20px 20px 30px 20px;
+}
+.form-legend {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--details-color)
+}
+.custom-legend {
+    border: 2px solid #2B3438;
+    border-radius: 20px;
+    padding: 5px 10px;
+    background-color: #2B3438;
 }
 .form-label {
-    color: white;
+    color: #BABABA;
     font-size: 20px;
     font-weight: 400;
+    padding-bottom: 5px;
 }
-.form-control{
+.form-control {
     width: 100%;
+    color: #BABABA;
+    border-radius: 5px;
+    border: 2px solid #2B3438;
+    background-color: #2B3438;
     font-size: 18px;
+    padding: 5px 0 5px 5px;
 }
+.form-control option{
+    font-size: 15px;
+}
+
 /* ---------------------------------------------- FOOTER ------------------------------------------------------------------------------------ */
 .columns-container{
     display: flex;
@@ -210,4 +238,53 @@
 .timeschedules-ul{
     list-style-type: none;
     padding: 0;
+}
+
+/* prueba calendario */
+.calendar {
+    font-family: 'Work Sans';
+    width: 100%;
+}
+
+.calendar table {
+    border-collapse: collapse;
+}
+
+.calendar th,
+.calendar td {
+    text-align: center;
+}
+
+.calendar th {
+    background-color: #f2f2f2;
+}
+
+.calendar td {
+    background-color: var(--header-bg-color);
+    color: white;
+}
+
+.calendar td:hover {
+    background-color: #e6e6e6;
+}
+
+.calendar .other-month {
+    color: #999;
+}
+
+.calendar .weekend {
+    background-color: #f9f9f9;
+}
+
+.calendar .selected {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.calendar .today {
+    font-weight: bold;
+}
+.calendar a{
+    text-decoration: none;
+    color: var(--details-color) !important;
 }
