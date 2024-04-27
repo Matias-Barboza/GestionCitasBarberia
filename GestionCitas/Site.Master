@@ -43,8 +43,6 @@
 
             </section>
 
-            <hr />
-
         </header>
 
         <div>
@@ -52,52 +50,64 @@
             </asp:ContentPlaceHolder>
         </div>
 
-        <footer aria-label="Footer de la página">
-
-            <hr />
+        <footer class="footer" aria-label="Footer de la página">
 
             <div class="columns-container">
 
                 <section class="footer-column" aria-label="Horarios de atención">
                     <%-- HORARIOS --%>
                     <header>
-                        <h3>Horarios de atención</h3>
+                        <h4 class="column-footer-title">Horarios de atención</h4>
                     </header>
 
+                    <hr class="hr-custom" />
                     <ul class="timeschedules-ul">
-                        <li>Martes de 9:00 AM a 21:00 PM.</li>
-                        <li>Miércoles de 9:00 AM a 21:00 PM.</li>
-                        <li>Jueves de 9:00 AM a 21:00 PM.</li>
-                        <li>Viernes de 9:00 AM a 21:00 PM.</li>
-                        <li>Sábado de 9:00 AM a 21:00 PM.</li>
+                        <li class="list-item-footer">Martes de 9:00 AM a 21:00 PM.</li>
+                        <li class="list-item-footer">Miércoles de 9:00 AM a 21:00 PM.</li>
+                        <li class="list-item-footer">Jueves de 9:00 AM a 21:00 PM.</li>
+                        <li class="list-item-footer">Viernes de 9:00 AM a 21:00 PM.</li>
+                        <li class="list-item-footer">Sábado de 9:00 AM a 21:00 PM.</li>
                     </ul>
-                </section>
-
-                <section class="footer-column" aria-label="Ubicación">
-                    <%-- UBICACIÓN --%>
-                    <header>
-                        <h3>Nuestra ubicación</h3>
-                    </header>
-                    <p>French 400</p>
                 </section>
 
                 <section class="footer-column" aria-label="Redes sociales">
                     <%-- REDES --%>
                     <header>
-                        <h3>Nuestras redes sociales</h3>
+                        <h4 class="column-footer-title">Nuestras redes sociales</h4>
                     </header>
 
-                    <h4>Barbero 1</h4>
+                    <hr class="hr-custom" />
+
+                    <h5>Barbero 1</h5>
                     <a href="#">Instagram</a>
                     <a href="#">Facebook</a>
 
-                    <h4>Barbero 2</h4>
+                    <h5>Barbero 2</h5>
                     <a href="#">Instagram</a>
                     <a href="#">Facebook</a>
 
                 </section>
 
+                <section class="footer-column" aria-label="Ubicación">
+                    <%-- UBICACIÓN --%>
+                    <header>
+                        <h4 class="column-footer-title">Nuestra ubicación</h4>
+                    </header>
+
+                    <hr class="hr-custom" />
+                    <div class="a-maps">
+                        <a href="https://maps.app.goo.gl/V1T1awQeLT9J6EHb7">French 76</a>
+                    </div>
+                    <div class="map-container">
+                        <iframe class="map-iframe" src="https://maps.google.com/maps?q=French 76&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
+                    </div>
+                </section>
+
             </div>
+
+            <hr class="hr-custom" />
+
+            <p class="footer-paragraph">INK Barbería - 2024</p>
 
         </footer>
 

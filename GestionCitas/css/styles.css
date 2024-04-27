@@ -39,9 +39,15 @@
     padding-top: 70px;
     padding-bottom: 70px;
 }
+.pt-70{
+    padding-top:70px;
+}
+.pb-70{
+    padding-bottom: 70px;
+}
 .paragraph{
     color: white;
-    font-size: 17px;
+    font-size: 20px;
 }
 
 /* ---------------------------------------------- HEADER ------------------------------------------------------------------------------------- */
@@ -55,6 +61,7 @@
     background-color: var(--header-bg-color);
     filter: drop-shadow( 0 0 10px rgba(0, 0, 0,.8));
     z-index: 99;
+    top: 0;
 }
 .content-header{
     display: flex;
@@ -121,7 +128,6 @@
     background: linear-gradient(to bottom, rgba(30, 35, 38, .8), rgba(30, 35, 38, 1)), url('/imgs/img_inicio.png');
     height: 110vh;
     background-size: cover;
-    margin: 60px 0 0 0;
 }
 .inicio-content{
     width: 100%;
@@ -226,61 +232,112 @@
 .form-control option{
     font-size: 15px;
 }
+.button {
+    margin-top: 30px;
+    padding: 20px 40px;
+    font-size: 20px;
+    color: white;
+    background-color: #333399;
+    border: 1px solid #2C2C85;
+    border-radius: 15px;
+    transition: 0.2s;
+}
+.button:hover{
+    background-color: #2C2C85;
+    border-color: #282878;
+}
 
 /* ---------------------------------------------- FOOTER ------------------------------------------------------------------------------------ */
-.columns-container{
+.footer {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+    color: white;
+    background-color: var(--header-bg-color);
+    box-shadow: 8px 8px 16px 16px rgba(0,0,0,0.2);
+}
+.columns-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 0;
+    width: 1100px;
 }
 .footer-column{
-    width: 300px;
+    width: fit-content;
+    padding: 0 30px;
+}
+.column-footer-title{
+    font-size: 20px;
+}
+.hr-custom {
+    color: var(--details-color);
+    margin: 5px 0;
+    width: 100%;
+}
+.list-item-footer{
+    font-size: 18px;
+}
+.a-maps{
+    margin-bottom: 10px;
+}
+.a-maps a{
+    color: white;
+    text-decoration: none;
+    transition: 0.2s;
+}
+.a-maps a:hover{
+    text-decoration: underline;
+}
+.map-container{
+
+}
+.map-iframe{
+    border: 2px solid var(--details-color);
+    border-radius: 15px;
 }
 .timeschedules-ul{
     list-style-type: none;
     padding: 0;
 }
+.footer-paragraph{
+    font-size: 14px;
+}
 
-/* prueba calendario */
+/* ---------------------------------------------- CALENDAR ------------------------------------------------------------------------------------ */
 .calendar {
-    font-family: 'Work Sans';
-    width: 100%;
+    border-radius: 10px;
+    border-collapse: unset !important;
 }
-
-.calendar table {
-    border-collapse: collapse;
+.calendar tbody {
+    border-radius: 10px;
 }
-
 .calendar th,
 .calendar td {
     text-align: center;
+    border-radius: 10px;
 }
-
 .calendar th {
     background-color: #f2f2f2;
+    border: 1px solid #54462F;
 }
-
 .calendar td {
     background-color: var(--header-bg-color);
     color: white;
 }
-
 .calendar td:hover {
-    background-color: #e6e6e6;
+        background-color: #39454A;
 }
-
 .calendar .other-month {
     color: #999;
 }
-
 .calendar .weekend {
     background-color: #f9f9f9;
 }
-
 .calendar .selected {
     background-color: #007bff;
     color: #fff;
 }
-
 .calendar .today {
     font-weight: bold;
 }

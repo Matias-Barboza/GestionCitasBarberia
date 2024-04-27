@@ -16,7 +16,7 @@
     <%--------------------------------------  SOBRE NOSOTROS Y NUESTRO LUGAR  ------------------------------------------------------%>
     <section id="sobre-nosotros" class="information-section">
 
-        <div class="section-information-content">
+        <div class="section-information-content pt-70">
 
             <article>
 
@@ -80,7 +80,8 @@
 
     <section class="information-section">
 
-        <div class="section-information-content">
+        <div class="section-information-content pb-70">
+
             <header>
                 <h2 class="information-section-title">NUESTRO LUGAR</h2>
             </header>
@@ -99,6 +100,7 @@
                 </div>
 
             </article>
+
         </div>
 
     </section>
