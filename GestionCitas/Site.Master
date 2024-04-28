@@ -7,7 +7,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Ink Barbería</title>
 
+
     <link href="/css/styles.css" rel="stylesheet" />
+
+    <link href="lib/font-awesome/css/all.css" rel="stylesheet" />
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -29,7 +32,8 @@
                             <li class="navbar-element"><a class="main-navbar-element" href="Default.aspx#inicio">INICIO</a></li>
                             <li class="navbar-element"><a class="main-navbar-element" href="Default.aspx#sobre-nosotros">SOBRE NOSOTROS</a></li>
                             <li class="navbar-element dropdown">
-                                <a class="main-navbar-element" href="#">GESTIONAR CITA</a>
+                                <%--<a class="main-navbar-element" href="#">GESTIONAR CITA</a>--%>
+                                <button class="dropdown-button">GESTIONAR CITA</button>
                                 <div class="dropdown-content">
                                     <ul class="navbar-ul">
                                         <li><a href="BookAppointment.aspx">RESERVAR CITA</a></li>
@@ -62,11 +66,10 @@
 
                     <hr class="hr-custom" />
                     <ul class="timeschedules-ul">
-                        <li class="list-item-footer">Martes de 9:00 AM a 21:00 PM.</li>
-                        <li class="list-item-footer">Miércoles de 9:00 AM a 21:00 PM.</li>
-                        <li class="list-item-footer">Jueves de 9:00 AM a 21:00 PM.</li>
-                        <li class="list-item-footer">Viernes de 9:00 AM a 21:00 PM.</li>
-                        <li class="list-item-footer">Sábado de 9:00 AM a 21:00 PM.</li>
+                        <li class="list-item-footer">MARTES A VIERNES:</li>
+                        <li class="list-item-footer">9:00 AM a 21:00 PM.</li>
+                        <li class="list-item-footer">SÁBADOS:</li>
+                        <li class="list-item-footer">10:00 AM a 21:00 PM.</li>
                     </ul>
                 </section>
 
@@ -78,13 +81,17 @@
 
                     <hr class="hr-custom" />
 
-                    <h5>Barbero 1</h5>
-                    <a href="#">Instagram</a>
-                    <a href="#">Facebook</a>
+                    <h5 class="barber-name-footer">Matias Aquino</h5>
+                    <div class="social-networks-container">
+                        <a class="social-network" href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a class="social-network" href="#"><i class="fa-brands fa-square-facebook"></i></a>
+                    </div>
 
-                    <h5>Barbero 2</h5>
-                    <a href="#">Instagram</a>
-                    <a href="#">Facebook</a>
+                    <h5 class="barber-name-footer">Alexis Reyes</h5>
+                    <div>
+                        <a class="social-network" href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a class="social-network" href="#"><i class="fa-brands fa-square-facebook"></i></a>
+                    </div>
 
                 </section>
 
@@ -96,7 +103,9 @@
 
                     <hr class="hr-custom" />
                     <div class="a-maps">
-                        <a href="https://maps.app.goo.gl/V1T1awQeLT9J6EHb7">French 76</a>
+                        <a class="location" href="https://maps.app.goo.gl/V1T1awQeLT9J6EHb7"><i class="fa-solid fa-location-dot"></i>
+                            <p class="location-paragraph">French 76</p>
+                        </a>
                     </div>
                     <div class="map-container">
                         <iframe class="map-iframe" src="https://maps.google.com/maps?q=French 76&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
@@ -112,6 +121,8 @@
         </footer>
 
     </form>
+
+    <script src="lib/font-awesome/js/all.js"></script>
 
 </body>
 

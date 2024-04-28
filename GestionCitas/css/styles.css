@@ -86,11 +86,10 @@
 }
 .navbar a{
     text-decoration: none;
-    /*color: #3F3523;*/
     color: white;
     font-size: 18px;
     font-weight: 500;
-
+    transition: 0.3s;
 }
 .navbar .main-navbar-element:hover{
     color: #6E5C3D;
@@ -100,6 +99,16 @@
 .dropdown{
     position: relative;
     display: inline-block;
+}
+.dropdown-button {
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    background-color: var(--header-bg-color);
+    border: none;
+}
+.dropdown-button:hover{
+    color: #6E5C3D;
 }
 .dropdown-content a:hover{
     color: #6E5C3D;
@@ -116,10 +125,11 @@
 }
 .dropdown-content .navbar-ul li{
     padding: 10px 10px 10px 0;
-    transition: 0.3s;
+    transition: 0.2s;
 }
 .dropdown-content .navbar-ul li:hover{
     background-color: #232A2E;
+    border-bottom: 6px solid var(--details-color);
 }
 
 /* ---------------------------------------------- INICIO ------------------------------------------------------------------------------------ */
@@ -229,6 +239,9 @@
     font-size: 18px;
     padding: 5px 0 5px 5px;
 }
+.not-resizing-control{
+    resize: none;
+}
 .form-control option{
     font-size: 15px;
 }
@@ -272,16 +285,34 @@
 }
 .hr-custom {
     color: var(--details-color);
-    margin: 5px 0;
+    margin: 7px 0;
     width: 100%;
 }
 .list-item-footer{
     font-size: 18px;
+    padding: 3px 0;
 }
-.a-maps{
+.barber-name-footer{
+    font-size: 20px;
+    padding-bottom: 10px;
+}
+.social-networks-container{
+    padding-bottom: 15px;
+}
+.social-network{
+    font-size: 24px;
+    color: white;
+    text-decoration: none;
+    transition: 0.2s;
+}
+.social-network:hover{
+    color: var(--details-color);
+}
+.a-maps {
     margin-bottom: 10px;
 }
 .a-maps a{
+    display: inline-flex;
     color: white;
     text-decoration: none;
     transition: 0.2s;
@@ -289,8 +320,14 @@
 .a-maps a:hover{
     text-decoration: underline;
 }
-.map-container{
-
+.location{
+    color: white;
+    font-size: 18px;
+}
+.location-paragraph{
+    padding-left: 5px;
+}
+.map-container {
 }
 .map-iframe{
     border: 2px solid var(--details-color);
@@ -302,6 +339,7 @@
 }
 .footer-paragraph{
     font-size: 14px;
+    margin-bottom: 15px;
 }
 
 /* ---------------------------------------------- CALENDAR ------------------------------------------------------------------------------------ */
