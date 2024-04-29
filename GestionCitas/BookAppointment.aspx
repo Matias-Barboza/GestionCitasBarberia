@@ -4,7 +4,9 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <%--------------------------------------  GESTIÓN DE CITAS  ----------------------------------------------------------------------%>
+
+    <%--------------------------------------  RESERVA DE CITA  ----------------------------------------------------------------------%>
+
     <section class="information-section ptb-70">
 
         <div class="section-information-content">
@@ -13,16 +15,17 @@
                 <h2 class="information-section-title">RESERVÁ TU CITA</h2>
             </header>
 
+            <%-- ********************************************** INFORMACIÓN DEL CLIENTE ********************************************** --%>
+
             <fieldset class="form-border">
 
-                <%-- ********************************************** INFORMACION DEL CLIENTE ********************************************** --%>
 
                 <legend class="form-legend"><span class="custom-legend">Información personal</span></legend>
                 <div class="input-data-row">
 
+                    <%-- COLUMNA DE NOMBRE Y APELLIDO --%>
                     <div class="input-data-column">
 
-                        <%-- COLUMNA DE NOMBRE Y APELLIDO --%>
                         <asp:Label Text="Nombre:" runat="server" for="name" CssClass="form-label" />
                         <asp:TextBox name="name" ID="NameTextBox" placeholder="Escriba su nombre aquí..." runat="server" CssClass="form-control" required="true" />
 
@@ -39,9 +42,9 @@
 
                 <div class="input-data-row">
 
+                    <%-- COLUMNA DE EMAIL --%>
                     <div class="input-data-column">
 
-                        <%-- COLUMNA DE EMAIL --%>
                         <asp:Label Text="Email:" runat="server" for="mail" CssClass="form-label" />
                         <asp:TextBox name="mail" ID="MailTextBox" placeholder="example@example.com" runat="server" CssClass="form-control" required="true" />
 
@@ -51,14 +54,14 @@
 
             </fieldset>
 
-            <%-- ********************************************** INFORMACION DE LA CITA ********************************************** --%>
+            <%-- ********************************************** INFORMACIÓN DE LA CITA ********************************************** --%>
 
             <fieldset class="form-border">
 
                 <legend class="form-legend"><span class="custom-legend">Información de la cita</span></legend>
                 <div class="input-data-row">
 
-                    <%-- COLUMNA DE FECHA Y HORA DE LA CITA --%>
+                    <%-- COLUMNA DE FECHA --%>
                     <div class="input-data-column">
 
                         <asp:Label Text="Fecha a reservar:" runat="server" for="date" CssClass="form-label" />
@@ -73,9 +76,9 @@
 
                     </div>
 
+                    <%-- COLUMNA DE HORARIO, SERVICIO Y MONTO A SEÑAR --%>
                     <div class="input-data-column">
 
-                        <%-- COLUMNA DE HORARI, SERVICIO Y MONTO A SEÑAR --%>
                         <div class="input-data-column">
 
                             <asp:Label Text="Horario:" runat="server" for="hours" CssClass="form-label" />
@@ -103,12 +106,14 @@
 
             </fieldset>
 
+            <%-- ********************************************** INFORMACIÓN ADICIONAL ********************************************** --%>
+
             <fieldset class="form-border">
 
                 <legend class="form-legend"><span class="custom-legend">Información adicional</span></legend>
                 <div class="input-data-row">
 
-                    <%-- COLUMNA DE FECHA Y HORA DE LA CITA --%>
+                    <%-- COLUMNA DE COMENTARIOS --%>
                     <div class="input-data-column">
 
                         <asp:Label Text="Comentario (opcional):" runat="server" for="comments" CssClass="form-label" />
@@ -119,7 +124,6 @@
                 </div>
 
             </fieldset>
-
 
         </div>
 

@@ -5,7 +5,8 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <%--------------------------------------  FOTO DE INICIO  ----------------------------------------------------------------------%>
+    <%-- ********************************************** INICIO ********************************************** --%>
+    
     <section id="inicio" class="inicio">
         <div class="inicio-content">
             <h1 class="inicio-title">INK BARBERÍA</h1>
@@ -13,7 +14,8 @@
         </div>
     </section>
 
-    <%--------------------------------------  SOBRE NOSOTROS Y NUESTRO LUGAR  ------------------------------------------------------%>
+    <%-- ********************************************** SOBRE NOSOTROS ********************************************** --%>
+
     <section id="sobre-nosotros" class="information-section">
 
         <div class="section-information-content pt-70">
@@ -77,6 +79,8 @@
         </div>
 
     </section>
+
+    <%-- ********************************************** NUESTRO LUGAR ********************************************** --%>
 
     <section class="information-section">
 

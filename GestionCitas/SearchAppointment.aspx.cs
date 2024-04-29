@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace GestionCitas
 {
-    public partial class CancelAppointement : System.Web.UI.Page
+    public partial class CancelAppointment : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

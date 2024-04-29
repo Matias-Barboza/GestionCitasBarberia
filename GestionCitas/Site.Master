@@ -19,6 +19,8 @@
 
     <form id="form1" runat="server">
 
+        <%-- ********************************************** HEADER ********************************************** --%>
+
         <header>
 
             <section class="header">
@@ -32,12 +34,11 @@
                             <li class="navbar-element"><a class="main-navbar-element" href="Default.aspx#inicio">INICIO</a></li>
                             <li class="navbar-element"><a class="main-navbar-element" href="Default.aspx#sobre-nosotros">SOBRE NOSOTROS</a></li>
                             <li class="navbar-element dropdown">
-                                <%--<a class="main-navbar-element" href="#">GESTIONAR CITA</a>--%>
                                 <button class="dropdown-button">GESTIONAR CITA</button>
                                 <div class="dropdown-content">
                                     <ul class="navbar-ul">
                                         <li><a href="BookAppointment.aspx">RESERVAR CITA</a></li>
-                                        <li><a href="CancelAppointment.aspx">CANCELAR CITA</a></li>
+                                        <li><a href="SearchAppointment.aspx">CANCELAR CITA</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -54,6 +55,8 @@
             </asp:ContentPlaceHolder>
         </div>
 
+        <%-- ********************************************** FOOTER ********************************************** --%>
+
         <footer class="footer" aria-label="Footer de la página">
 
             <div class="columns-container">
@@ -65,12 +68,13 @@
                     </header>
 
                     <hr class="hr-custom" />
-                    <ul class="timeschedules-ul">
-                        <li class="list-item-footer">MARTES A VIERNES:</li>
-                        <li class="list-item-footer">9:00 AM a 21:00 PM.</li>
-                        <li class="list-item-footer">SÁBADOS:</li>
-                        <li class="list-item-footer">10:00 AM a 21:00 PM.</li>
-                    </ul>
+                    <dl class="timeschedules-dl">
+                        <dt class="dt-footer">MARTES A VIERNES:</dt>
+                        <dd class="dd-footer">9:00 AM - 21:00 PM.</dd>
+
+                        <dt class="dt-footer">SÁBADOS:</dt>
+                        <dd class="dd-footer">10:00 AM - 21:00 PM.</dd>
+                    </dl>
                 </section>
 
                 <section class="footer-column" aria-label="Redes sociales">

@@ -125,7 +125,7 @@
 }
 .dropdown-content .navbar-ul li{
     padding: 10px 10px 10px 0;
-    transition: 0.2s;
+    transition: 0.3s;
 }
 .dropdown-content .navbar-ul li:hover{
     background-color: #232A2E;
@@ -288,8 +288,13 @@
     margin: 7px 0;
     width: 100%;
 }
-.list-item-footer{
+.dt-footer {
     font-size: 18px;
+    padding: 3px 0;
+    font-weight: 500;
+}
+.dd-footer {
+    font-size: 16px;
     padding: 3px 0;
 }
 .barber-name-footer{
@@ -333,7 +338,7 @@
     border: 2px solid var(--details-color);
     border-radius: 15px;
 }
-.timeschedules-ul{
+.timeschedules-dl{
     list-style-type: none;
     padding: 0;
 }

@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="BookAppointment.aspx" />
     <Content Include="CancelAppointment.aspx" />
+    <Content Include="SearchAppointment.aspx" />
     <Content Include="css\styles.css" />
     <Content Include="Default.aspx" />
     <Content Include="lib\font-awesome\css\all.css" />
@@ -122,6 +123,13 @@
     </Compile>
     <Compile Include="CancelAppointment.aspx.designer.cs">
       <DependentUpon>CancelAppointment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SearchAppointment.aspx.cs">
+      <DependentUpon>SearchAppointment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SearchAppointment.aspx.designer.cs">
+      <DependentUpon>SearchAppointment.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
