@@ -7,7 +7,7 @@
 
     <%--------------------------------------  CANCELACIÓN DE CITA (EFECTIVA)  ----------------------------------------------------------------------%>
 
-    <section class="information-section ptb-70">
+    <section class="information-section ptb-90">
 
         <header>
             <h2 class="information-section-title">CANCELAR CITA</h2>
@@ -74,7 +74,7 @@
         <div class="actions-container">
 
             <asp:Button Text="CANCELAR CITA" runat="server" CssClass="button btn-cancel" />
-            <asp:Button Text="REGRESAR AL INICIO" runat="server" CssClass="button btn-back-to-inicio" />
+            <asp:Button Text="VOLVER AL INICIO" runat="server" CssClass="button btn-back-to-inicio" />
 
         </div>
 

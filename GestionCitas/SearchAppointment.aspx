@@ -7,7 +7,7 @@
 
     <%--------------------------------------  CANCELACIÓN DE CITA (BÚSQUEDA)  ----------------------------------------------------------------------%>
 
-    <section class="information-section ptb-70">
+    <section class="information-section pt-90 pb-160">
 
         <div class="section-information-content">
 

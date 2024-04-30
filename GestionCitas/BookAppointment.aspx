@@ -7,7 +7,7 @@
 
     <%--------------------------------------  RESERVA DE CITA  ----------------------------------------------------------------------%>
 
-    <section class="information-section ptb-70">
+    <section class="information-section ptb-90">
 
         <div class="section-information-content">
 

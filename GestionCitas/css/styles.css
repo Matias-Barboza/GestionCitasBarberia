@@ -35,15 +35,21 @@
     padding: 20px 30px 20px 30px;
     text-align: center;
 }
-.ptb-70{
-    padding-top: 70px;
-    padding-bottom: 70px;
+.ptb-90{
+    padding-top: 90px;
+    padding-bottom: 90px;
 }
 .pt-70{
     padding-top:70px;
 }
+.pt-90{
+    padding-top: 90px;
+}
 .pb-70{
     padding-bottom: 70px;
+}
+.pb-160{
+    padding-bottom: 160px;
 }
 .paragraph{
     color: white;
@@ -247,6 +253,8 @@
 }
 .button {
     margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
     padding: 20px 40px;
     font-size: 20px;
     color: white;
@@ -258,6 +266,16 @@
 .button:hover{
     background-color: #2C2C85;
     border-color: #282878;
+}
+.btn-cancel {
+    width: 258px;
+    background-color: firebrick;
+    border: 1px solid #9C1E1E;
+    transition: 0.2s;
+}
+.btn-cancel:hover{
+    background-color: #9C1E1E;
+    border-color: #851919;
 }
 
 /* ---------------------------------------------- FOOTER ------------------------------------------------------------------------------------ */
