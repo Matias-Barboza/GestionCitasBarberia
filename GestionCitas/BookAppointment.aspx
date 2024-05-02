@@ -52,6 +52,18 @@
 
                 </div>
 
+                <div class="input-data-row">
+
+                    <%-- COLUMNA DE TELEFONO --%>
+                    <div class="input-data-column">
+
+                        <asp:Label Text="Teléfono:" runat="server" for="cel" CssClass="form-label" />
+                        <asp:TextBox name="cel" ID="TelTextBox" placeholder="Ej: +543624999999" runat="server" CssClass="form-control" />
+
+                    </div>
+
+                </div>
+
             </fieldset>
 
             <%-- ********************************************** INFORMACIÓN DE LA CITA ********************************************** --%>
@@ -64,20 +76,19 @@
                     <%-- COLUMNA DE FECHA --%>
                     <div class="input-data-column">
 
-                        <asp:Label Text="Fecha a reservar:" runat="server" for="date" CssClass="form-label" />
-                        <asp:Calendar ID="Calendar" runat="server" CssClass="calendar" BorderColor="#2B3438" NextMonthText="&gt;" BorderWidth="2px" Font-Names="Work Sans" Font-Size="14pt" ForeColor="White" Height="200px" NextPrevFormat="FullMonth" Width="100%">
-                            <DayHeaderStyle Font-Bold="True" Font-Size="10pt" BackColor="#6E5C3D" />
-                            <NextPrevStyle Font-Bold="True" Font-Size="12pt" ForeColor="#333333" VerticalAlign="Bottom" />
-                            <OtherMonthDayStyle ForeColor="#999999" BackColor="#39454A" />
-                            <SelectedDayStyle BackColor="#333399" ForeColor="White" />
-                            <TitleStyle Font-Bold="True" Font-Size="14pt" ForeColor="#333399" BackColor="#1E2427" />
-                            <TodayDayStyle BackColor="#BABABA" CssClass="today-day-style" />
-                        </asp:Calendar>
+                        <div class="input-data-column">
 
-                    </div>
+                            <asp:Label Text="Fecha a reservar:" runat="server" for="date" CssClass="form-label" />
+                            <asp:Calendar ID="Calendar" runat="server" CssClass="calendar" BorderColor="#2B3438" NextMonthText="&gt;" BorderWidth="2px" Font-Names="Work Sans" Font-Size="14pt" ForeColor="White" Height="200px" NextPrevFormat="FullMonth" Width="100%">
+                                <DayHeaderStyle Font-Bold="True" Font-Size="10pt" BackColor="#6E5C3D" />
+                                <NextPrevStyle Font-Bold="True" Font-Size="12pt" ForeColor="#333333" VerticalAlign="Bottom" />
+                                <OtherMonthDayStyle ForeColor="#999999" BackColor="#39454A" />
+                                <SelectedDayStyle BackColor="#333399" ForeColor="White" />
+                                <TitleStyle Font-Bold="True" Font-Size="14pt" ForeColor="#333399" BackColor="#1E2427" />
+                                <TodayDayStyle BackColor="#BABABA" CssClass="today-day-style" />
+                            </asp:Calendar>
 
-                    <%-- COLUMNA DE HORARIO, SERVICIO Y MONTO A SEÑAR --%>
-                    <div class="input-data-column">
+                        </div>
 
                         <div class="input-data-column">
 
@@ -85,6 +96,11 @@
                             <asp:DropDownList name="hours" ID="HoursDropDownList" runat="server" CssClass="form-control"></asp:DropDownList>
 
                         </div>
+
+                    </div>
+
+                    <%-- COLUMNA DE HORARIO, SERVICIO, TIEMPO ESTIMADO Y PRECIO FINAL --%>
+                    <div class="input-data-column">
 
                         <div class="input-data-column">
 
@@ -95,8 +111,15 @@
 
                         <div class="input-data-column">
 
-                            <asp:Label Text="Monto a señar:" runat="server" for="amount" CssClass="form-label" />
-                            <asp:TextBox name="amount" ID="AmountTextBox" runat="server" CssClass="form-control" ReadOnly="True"></asp:TextBox>
+                            <asp:Label Text="Tiempo estimado:" runat="server" for="estimated-time" CssClass="form-label" />
+                            <asp:TextBox name="estimated-time" ID="EstimatedTimeTextBox" runat="server" CssClass="form-control" ReadOnly="True"></asp:TextBox>
+
+                        </div>
+
+                        <div class="input-data-column">
+
+                            <asp:Label Text="Precio final del servicio:" runat="server" for="amount" CssClass="form-label" />
+                            <asp:TextBox name="amount" ID="TextBox1" runat="server" CssClass="form-control" ReadOnly="True"></asp:TextBox>
 
                         </div>
 

@@ -42,6 +42,15 @@ namespace GestionCitas
         protected global::System.Web.UI.WebControls.TextBox MailTextBox;
 
         /// <summary>
+        /// Control TelTextBox.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TelTextBox;
+
+        /// <summary>
         /// Control Calendar.
         /// </summary>
         /// <remarks>
@@ -69,13 +78,22 @@ namespace GestionCitas
         protected global::System.Web.UI.WebControls.DropDownList ServicesDropDownList;
 
         /// <summary>
-        /// Control AmountTextBox.
+        /// Control EstimatedTimeTextBox.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox AmountTextBox;
+        protected global::System.Web.UI.WebControls.TextBox EstimatedTimeTextBox;
+
+        /// <summary>
+        /// Control TextBox1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBox1;
 
         /// <summary>
         /// Control TextBoxComments.
