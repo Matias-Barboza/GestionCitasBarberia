@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace GestionCitasRepositorys
 {
-    public class BarberoRepository
+    public class BarberoRepository : BaseRepository
     {
+        public BarberoRepository()
+        { 
+            
+        }
     }
 }

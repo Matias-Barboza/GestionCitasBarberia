@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace GestionCitasRepositorys
 {
-    public class BaseRepository
+    public abstract class BaseRepository
     {
+        private string connectionString;
+
+        public string ConnectionString { get => connectionString; set => connectionString = value; }
     }
 }

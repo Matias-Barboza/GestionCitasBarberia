@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace GestionCitasRepositorys
 {
-    public class TurnoRepository
+    public class TurnoRepository : BaseRepository
     {
+        public TurnoRepository() 
+        {
+            
+        }
     }
 }

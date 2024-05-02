@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GestionCitasRepositorys
+namespace GestionCitasModels
 {
     public class Servicio
     {
@@ -12,5 +12,10 @@ namespace GestionCitasRepositorys
         private string descripcion;
         private int tiempoEstimado;
         private decimal precio;
+
+        public int Id { get => id; set => id = value; }
+        public string Descripcion { get => descripcion; set => descripcion = value; }
+        public int TiempoEstimado { get => tiempoEstimado; set => tiempoEstimado = value; }
+        public decimal Precio { get => precio; set => precio = value; }
     }
 }

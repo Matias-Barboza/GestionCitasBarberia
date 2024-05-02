@@ -46,7 +46,7 @@
                     <div class="input-data-column">
 
                         <asp:Label Text="Email:" runat="server" for="mail" CssClass="form-label" />
-                        <asp:TextBox name="mail" ID="MailTextBox" placeholder="example@example.com" runat="server" CssClass="form-control" required="true" />
+                        <asp:TextBox name="mail" ID="EmailTextBox" placeholder="example@example.com" runat="server" CssClass="form-control" required="true" />
 
                     </div>
 
@@ -58,7 +58,7 @@
                     <div class="input-data-column">
 
                         <asp:Label Text="Teléfono:" runat="server" for="cel" CssClass="form-label" />
-                        <asp:TextBox name="cel" ID="TelTextBox" placeholder="Ej: +543624999999" runat="server" CssClass="form-control" />
+                        <asp:TextBox name="cel" ID="TelTextBox" placeholder="Ej: +543624999999" runat="server" CssClass="form-control" required="true" />
 
                     </div>
 
@@ -73,13 +73,13 @@
                 <legend class="form-legend"><span class="custom-legend">Información de la cita</span></legend>
                 <div class="input-data-row">
 
-                    <%-- COLUMNA DE FECHA --%>
-                    <div class="input-data-column">
+                    <%-- COLUMNA DE FECHA Y HORARIO --%>
+                    <div class="input-data-column-wsp">
 
                         <div class="input-data-column">
 
                             <asp:Label Text="Fecha a reservar:" runat="server" for="date" CssClass="form-label" />
-                            <asp:Calendar ID="Calendar" runat="server" CssClass="calendar" BorderColor="#2B3438" NextMonthText="&gt;" BorderWidth="2px" Font-Names="Work Sans" Font-Size="14pt" ForeColor="White" Height="200px" NextPrevFormat="FullMonth" Width="100%">
+                            <asp:Calendar ID="Calendar" runat="server" CssClass="calendar" BorderColor="#2B3438" NextMonthText="&gt;" BorderWidth="2px" Font-Names="Work Sans" Font-Size="14pt" ForeColor="White" Height="200px" NextPrevFormat="FullMonth" Width="100%" required="true">
                                 <DayHeaderStyle Font-Bold="True" Font-Size="10pt" BackColor="#6E5C3D" />
                                 <NextPrevStyle Font-Bold="True" Font-Size="12pt" ForeColor="#333333" VerticalAlign="Bottom" />
                                 <OtherMonthDayStyle ForeColor="#999999" BackColor="#39454A" />
@@ -93,19 +93,26 @@
                         <div class="input-data-column">
 
                             <asp:Label Text="Horario:" runat="server" for="hours" CssClass="form-label" />
-                            <asp:DropDownList name="hours" ID="HoursDropDownList" runat="server" CssClass="form-control"></asp:DropDownList>
+                            <asp:DropDownList name="hours" ID="HoursDropDownList" runat="server" CssClass="form-control" required="true"></asp:DropDownList>
 
                         </div>
 
                     </div>
 
-                    <%-- COLUMNA DE HORARIO, SERVICIO, TIEMPO ESTIMADO Y PRECIO FINAL --%>
-                    <div class="input-data-column">
+                    <%-- COLUMNA DE SERVICIO, BARBERO, TIEMPO ESTIMADO Y PRECIO FINAL --%>
+                    <div class="input-data-column-wsp">
+
+                        <div class="input-data-column">
+
+                            <asp:Label Text="Barbero:" runat="server" for="barber" CssClass="form-label" />
+                            <asp:DropDownList name="barber" ID="BarbersDropDownList" runat="server" CssClass="form-control" required="true"></asp:DropDownList>
+
+                        </div>
 
                         <div class="input-data-column">
 
                             <asp:Label Text="Servicio:" runat="server" for="service" CssClass="form-label" />
-                            <asp:DropDownList name="service" ID="ServicesDropDownList" runat="server" CssClass="form-control"></asp:DropDownList>
+                            <asp:DropDownList name="service" ID="ServicesDropDownList" runat="server" CssClass="form-control" required="true"></asp:DropDownList>
 
                         </div>
 
@@ -119,9 +126,19 @@
                         <div class="input-data-column">
 
                             <asp:Label Text="Precio final del servicio:" runat="server" for="amount" CssClass="form-label" />
-                            <asp:TextBox name="amount" ID="TextBox1" runat="server" CssClass="form-control" ReadOnly="True"></asp:TextBox>
+                            <asp:TextBox name="amount" ID="AmountTextBox" runat="server" CssClass="form-control" ReadOnly="True"></asp:TextBox>
 
                         </div>
+
+                    </div>
+
+                </div>
+
+                <div class="input-data-row">
+
+                    <div class="input-data-column">
+
+                            <asp:Label Text="Nota: Recuerde que unicamente trabajamos de martes a sábados." runat="server" CssClass="form-label-info" />
 
                     </div>
 
@@ -150,7 +167,7 @@
 
         </div>
 
-        <asp:Button Text="RESERVAR" runat="server" CssClass="button btn-book" />
+        <asp:Button Text="RESERVAR" ID="BookBtn" runat="server" CssClass="button btn-book" OnClick="BookBtn_Click" />
 
     </section>
 

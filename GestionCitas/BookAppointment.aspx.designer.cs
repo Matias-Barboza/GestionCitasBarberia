@@ -33,13 +33,13 @@ namespace GestionCitas
         protected global::System.Web.UI.WebControls.TextBox SurnameTextBox;
 
         /// <summary>
-        /// Control MailTextBox.
+        /// Control EmailTextBox.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox MailTextBox;
+        protected global::System.Web.UI.WebControls.TextBox EmailTextBox;
 
         /// <summary>
         /// Control TelTextBox.
@@ -69,6 +69,15 @@ namespace GestionCitas
         protected global::System.Web.UI.WebControls.DropDownList HoursDropDownList;
 
         /// <summary>
+        /// Control BarbersDropDownList.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList BarbersDropDownList;
+
+        /// <summary>
         /// Control ServicesDropDownList.
         /// </summary>
         /// <remarks>
@@ -87,13 +96,13 @@ namespace GestionCitas
         protected global::System.Web.UI.WebControls.TextBox EstimatedTimeTextBox;
 
         /// <summary>
-        /// Control TextBox1.
+        /// Control AmountTextBox.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox AmountTextBox;
 
         /// <summary>
         /// Control TextBoxComments.
@@ -103,5 +112,14 @@ namespace GestionCitas
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxComments;
+
+        /// <summary>
+        /// Control BookBtn.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BookBtn;
     }
 }

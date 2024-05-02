@@ -169,6 +169,16 @@
   <ItemGroup>
     <Folder Include="imgs\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GestionCitasControllers\GestionCitasControllers.csproj">
+      <Project>{ec4571ee-e777-4178-b4dc-f8eca6d5d58a}</Project>
+      <Name>GestionCitasControllers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GestionCitasModels\GestionCitasModels.csproj">
+      <Project>{09cac8aa-9cbf-4885-9040-fd47465bdbc2}</Project>
+      <Name>GestionCitasModels</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

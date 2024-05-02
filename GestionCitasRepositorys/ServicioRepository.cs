@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace GestionCitasRepositorys
 {
-    public class ServicioRepository
+    public class ServicioRepository : BaseRepository
     {
+        public ServicioRepository() 
+        {
+            
+        }
     }
 }
