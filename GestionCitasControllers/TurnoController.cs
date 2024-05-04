@@ -10,12 +10,12 @@ namespace GestionCitasControllers
     {
         private TurnoRepository turnoRepository;
 
+        public TurnoRepository TurnoRepository { get => turnoRepository; set => turnoRepository = value; }
+
         public TurnoController() 
         {
             this.TurnoRepository = new TurnoRepository();
         }
-
-        public TurnoRepository TurnoRepository { get => turnoRepository; set => turnoRepository = value; }
 
         public bool IsValidAppointment(Turno entidad)
         {
@@ -35,6 +35,18 @@ namespace GestionCitasControllers
             }
 
             return valid;
+        }
+
+        public bool CreateNewTurno(Turno turno) 
+        {
+            return true;
+        }
+
+        public bool TestConnection() 
+        {
+            int result = turnoRepository.CreateTurno();
+
+            return result == 1;
         }
     }
 }
