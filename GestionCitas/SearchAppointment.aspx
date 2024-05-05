@@ -36,7 +36,7 @@
 
         </div>
 
-        <asp:Button Text="BUSCAR" runat="server" CssClass="button btn-search" />
+        <asp:Button Text="BUSCAR" ID="btnSearch" runat="server" CssClass="button btn-search" OnClick="btnSearch_Click"/>
 
     </section>
 

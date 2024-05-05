@@ -15,13 +15,13 @@ namespace GestionCitas
     {
 
         /// <summary>
-        /// Control AmountTextBox.
+        /// Control TextBoxDate.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox AmountTextBox;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxDate;
 
         /// <summary>
         /// Control TextBoxHour.
@@ -40,6 +40,15 @@ namespace GestionCitas
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxService;
+
+        /// <summary>
+        /// Control TextBoxClientFullName.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBoxClientFullName;
 
         /// <summary>
         /// Control TextBoxComments.

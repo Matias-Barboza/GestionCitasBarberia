@@ -23,13 +23,17 @@ namespace GestionCitasModels
                 .NotEmpty().WithMessage("Es obligatorio seleccionar una fecha para la cita.")
                 .GreaterThan(DateTime.Today.AddDays(-1));
 
-            RuleFor(Turno => Turno.NombreApellidoCliente)
-                .NotEmpty().WithMessage("La información: Nombre y apellido es obligatoria.")
+            RuleFor(Turno => Turno.NombreCliente)
+                .NotEmpty().WithMessage("La información 'Nombre' es obligatoria.")
+                .Matches("^[a-zA-Z]+(?:\\s+[a-zA-Z]+)*$");
+
+            RuleFor(Turno => Turno.ApellidoCliente)
+                .NotEmpty().WithMessage("La información 'Apellido' es obligatoria.")
                 .Matches("^[a-zA-Z]+(?:\\s+[a-zA-Z]+)*$");
 
             RuleFor(Turno => Turno.TelefonoCliente)
                 .NotEmpty().WithMessage("La información: Teléfono es obligatoria.")
-                .Matches("^\\+(?:\\d{1,3}|\\d{1,4}|\\d{1,5})\\s\\d{9,}$");
+                .Matches("^(?:\\+?54)?\\d{10}$");
 
             RuleFor(Turno => Turno.EmailCliente)
                 .NotEmpty().WithMessage("La información: Email es obligatoria.")

@@ -37,14 +37,33 @@ namespace GestionCitasControllers
             return valid;
         }
 
-        public bool CreateNewTurno(Turno turno) 
+        public Turno GetById(int idTurno) 
         {
-            return true;
+            if(idTurno < 1000) 
+            {
+                return null;
+            }
+
+            return turnoRepository.GetTurnoById(idTurno);
         }
 
-        public bool TestConnection() 
+        public bool CreateNewTurno(Turno turno) 
         {
-            int result = turnoRepository.CreateTurno();
+            bool result = false;
+
+            if (!IsValidAppointment(turno))
+            {
+                return result;
+            }
+
+            result = turnoRepository.CreateTurno(turno);
+
+            return result;
+        }
+
+        public bool SuccessConnection() 
+        {
+            int result = turnoRepository.TestConnection();
 
             return result == 1;
         }

@@ -17,6 +17,8 @@ namespace GestionCitas
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            turnoController = new TurnoController();
+
             if (!IsPostBack) 
             {
                 LoadHours();
@@ -72,7 +74,22 @@ namespace GestionCitas
 
         protected void BookBtn_Click(object sender, EventArgs e)
         {
-            
+            Turno nuevoTurno = new Turno();
+
+            nuevoTurno.IdBarbero = BarbersDropDownList.SelectedIndex;
+            nuevoTurno.IdServicio = ServicesDropDownList.SelectedIndex;
+            nuevoTurno.FechaYHora = Calendar.SelectedDate;
+            nuevoTurno.NombreCliente = NameTextBox.Text;
+            nuevoTurno.ApellidoCliente = SurnameTextBox.Text;
+            nuevoTurno.TelefonoCliente = TelTextBox.Text;
+            nuevoTurno.EmailCliente = EmailTextBox.Text;
+
+            bool created = turnoController.CreateNewTurno(nuevoTurno);
+
+            if (created)
+            {
+                Response.Redirect("Default.aspx");
+            }
         }
     }
 }

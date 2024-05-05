@@ -20,13 +20,13 @@
                 <legend class="form-legend"><span class="custom-legend">Información de la cita</span></legend>
                 <div class="input-data-row">
 
-                    <%-- COLUMNA DE HORARIO, SERVICIO Y MONTO A SEÑAR --%>
+                    <%-- COLUMNA DE FECHA, HORARIO Y SERVICIO --%>
                     <div class="input-data-column">
 
                         <div class="input-data-column">
 
                             <asp:Label Text="Fecha reservada:" runat="server" for="date" CssClass="form-label" />
-                            <asp:TextBox name="date" ID="AmountTextBox" runat="server" CssClass="form-control" ReadOnly="True"></asp:TextBox>
+                            <asp:TextBox name="date" ID="TextBoxDate" runat="server" CssClass="form-control" ReadOnly="True"></asp:TextBox>
 
                         </div>
 
@@ -41,6 +41,13 @@
 
                             <asp:Label Text="Servicio:" runat="server" for="service" CssClass="form-label" />
                             <asp:TextBox name="service" ID="TextBoxService" runat="server" CssClass="form-control" ReadOnly="True"></asp:TextBox>
+
+                        </div>
+
+                        <div class="input-data-column">
+
+                            <asp:Label Text="Reserva a nombre de:" runat="server" for="service" CssClass="form-label" />
+                            <asp:TextBox name="service" ID="TextBoxClientFullName" runat="server" CssClass="form-control" ReadOnly="True"></asp:TextBox>
 
                         </div>
 

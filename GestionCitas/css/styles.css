@@ -275,6 +275,7 @@
     border: 1px solid #2C2C85;
     border-radius: 15px;
     transition: 0.2s;
+    cursor: pointer;
 }
 .button:hover{
     background-color: #2C2C85;
