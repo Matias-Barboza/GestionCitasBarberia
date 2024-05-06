@@ -23,54 +23,29 @@ namespace GestionCitasRepositorys
                     connection.Open();
 
                     // Todavía sin funcionar
-                    NpgsqlCommand command = new NpgsqlCommand(@"CALL sp_reservar_turno(@id_barbero_reserva, @id_servicio_reserva,
-                                                                                   @fecha_hora_turno_reserva,
-                                                                                   @nombre_cliente_reserva, @apellido_cliente_reserva
-                                                                                   @telefono_cliente_reserva, @email_cliente_reserva)", connection);
-                    command.Parameters.Add(new NpgsqlParameter()
+                    using (NpgsqlCommand command = new NpgsqlCommand(@"CALL sp_reservar_turno(@id_barbero_reserva, @id_servicio_reserva,
+                                                                                              @fecha_hora_turno_reserva, @nombre_cliente_reserva,
+                                                                                              @apellido_cliente_reserva, @telefono_cliente_reserva,
+                                                                                              @email_cliente_reserva)", connection))
+                    //using (NpgsqlCommand command = new NpgsqlCommand(@"INSERT INTO turno(id_barbero, id_servicio, fecha_hora_turno,
+                    //                                                      nombre_cliente, apellido_cliente, telefono_cliente,
+                    //                                                      email_cliente)
+                    //                                                           VALUES(@id_barbero_reserva, @id_servicio_reserva, @fecha_hora_turno_reserva,
+                    //                                                               @nombre_cliente_reserva, @apellido_cliente_reserva, @telefono_cliente_reserva,
+                    //                                                               @email_cliente_reserva);", connection))
                     {
-                        ParameterName = "id_barbero_reserva",
-                        NpgsqlDbType = NpgsqlTypes.NpgsqlDbType.Integer,
-                        Value = turno.IdBarbero
-                    });
-                    command.Parameters.Add(new NpgsqlParameter()
-                    {
-                        ParameterName = "id_servicio_reserva",
-                        NpgsqlDbType = NpgsqlTypes.NpgsqlDbType.Integer,
-                        Value = turno.IdServicio
-                    });
-                    command.Parameters.Add(new NpgsqlParameter()
-                    {
-                        ParameterName = "fecha_hora_turno_reserva",
-                        NpgsqlDbType = NpgsqlTypes.NpgsqlDbType.Timestamp,
-                        Value = turno.FechaYHora
-                    });
-                    command.Parameters.Add(new NpgsqlParameter()
-                    {
-                        ParameterName = "nombre_cliente_reserva",
-                        NpgsqlDbType = NpgsqlTypes.NpgsqlDbType.Varchar,
-                        Value = turno.NombreCliente
-                    });
-                    command.Parameters.Add(new NpgsqlParameter()
-                    {
-                        ParameterName = "apellido_cliente_reserva",
-                        NpgsqlDbType = NpgsqlTypes.NpgsqlDbType.Varchar,
-                        Value = turno.ApellidoCliente
-                    });
-                    command.Parameters.Add(new NpgsqlParameter()
-                    {
-                        ParameterName = "telefono_cliente_reserva",
-                        NpgsqlDbType = NpgsqlTypes.NpgsqlDbType.Varchar,
-                        Value = turno.TelefonoCliente
-                    });
-                    command.Parameters.Add(new NpgsqlParameter()
-                    {
-                        ParameterName = "email_cliente_reserva",
-                        NpgsqlDbType = NpgsqlTypes.NpgsqlDbType.Varchar,
-                        Value = turno.EmailCliente
-                    });
+                        command.CommandType = CommandType.StoredProcedure;
 
-                    created = command.ExecuteNonQuery();
+                        command.Parameters.AddWithValue("id_barbero_reserva", turno.IdBarbero);
+                        command.Parameters.AddWithValue("id_servicio_reserva", turno.IdServicio);
+                        command.Parameters.AddWithValue("fecha_hora_turno_reserva", turno.FechaYHora);
+                        command.Parameters.AddWithValue("nombre_cliente_reserva", turno.NombreCliente);
+                        command.Parameters.AddWithValue("apellido_cliente_reserva", turno.ApellidoCliente);
+                        command.Parameters.AddWithValue("telefono_cliente_reserva", turno.TelefonoCliente);
+                        command.Parameters.AddWithValue("email_cliente_reserva", turno.EmailCliente);
+
+                        created = command.ExecuteNonQuery();
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -82,14 +57,52 @@ namespace GestionCitasRepositorys
             return created == 1;
         }
 
-        public bool UpdateTurno(Turno turno)
+        public bool UpdateTurno(int idTurno)
         {
             return true;
         }
 
-        public bool DeleteTurno(Turno turno)
+        public bool DeleteTurno(int idTurno)
         {
-            return true;
+            int eliminated = -1;
+
+            using(NpgsqlConnection connection = new NpgsqlConnection(ConnectionString)) 
+            {
+                try
+                {
+                    connection.Open();
+
+                    using (NpgsqlCommand command = new NpgsqlCommand("CALL sp_eliminar_turno(@id_turno)", connection)) 
+                    {
+                        command.Parameters.Add(new NpgsqlParameter()
+                        {
+                            ParameterName = "id_turno",
+                            NpgsqlDbType = NpgsqlTypes.NpgsqlDbType.Integer,
+                            Value = idTurno
+                        });
+
+                        command.ExecuteNonQuery();
+                    }
+                    using(NpgsqlCommand command = new NpgsqlCommand("SELECT COUNT(*) FROM obtener_turno_por_id(@id_turno)", connection)) 
+                    {
+                        command.Parameters.Add(new NpgsqlParameter()
+                        {
+                            ParameterName = "id_turno",
+                            NpgsqlDbType = NpgsqlTypes.NpgsqlDbType.Integer,
+                            Value = idTurno
+                        });
+
+                        eliminated =  (int)(long) command.ExecuteScalar();
+                    }
+                }
+                catch (Exception e)
+                {
+                    connection.Close();
+                    throw e;
+                }
+            }
+
+            return eliminated == 0;
         }
 
         public Turno GetTurnoById(int idTurno)
@@ -117,11 +130,11 @@ namespace GestionCitasRepositorys
                             {
                                 turnoBuscado = new Turno();
 
-                                turnoBuscado.IdTurno = (int) reader[0];
-                                turnoBuscado.Servicio.Descripcion = (string) reader[1];
-                                turnoBuscado.FechaYHora = (DateTime) reader[2];
-                                turnoBuscado.NombreCliente = (string) reader[3];
-                                turnoBuscado.ApellidoCliente = (string) reader[4];
+                                turnoBuscado.IdTurno = (int)reader[0];
+                                turnoBuscado.Servicio.Descripcion = (string)reader[1];
+                                turnoBuscado.FechaYHora = (DateTime)reader[2];
+                                turnoBuscado.NombreCliente = (string)reader[3];
+                                turnoBuscado.ApellidoCliente = (string)reader[4];
                             }
                         }
                     }

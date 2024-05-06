@@ -80,7 +80,7 @@
 
         <div class="actions-container">
 
-            <asp:Button Text="CANCELAR CITA" runat="server" CssClass="button btn-cancel" />
+            <asp:Button Text="CANCELAR CITA" ID="btnCancelAppointment" runat="server" CssClass="button btn-cancel" OnClick="btnCancelAppointment_Click"/>
             <asp:Button Text="VOLVER AL INICIO" runat="server" CssClass="button btn-back-to-inicio" />
 
         </div>

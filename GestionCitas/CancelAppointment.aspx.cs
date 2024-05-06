@@ -1,15 +1,19 @@
-﻿using GestionCitasModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+using GestionCitasControllers;
+using GestionCitasModels;
+
 namespace GestionCitas
 {
     public partial class CancelAppointement : System.Web.UI.Page
     {
+        TurnoController turnoController;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack) 
@@ -23,6 +27,24 @@ namespace GestionCitas
                     TextBoxService.Text = turno.Servicio.Descripcion;
                     TextBoxClientFullName.Text = turno.NombreCliente + " " + turno.ApellidoCliente;
                 }
+            }
+        }
+
+        protected void btnCancelAppointment_Click(object sender, EventArgs e)
+        {
+            if ((bool) Session["turnoEncontrado"]) 
+            {
+                turnoController = new TurnoController();
+
+                Turno turno = (Turno) Session["turno"];
+
+                bool eliminated = turnoController.DeleteTurno(turno.IdTurno);
+
+                if (eliminated) 
+                {
+                    Response.Redirect("~/Default.aspx");
+                }
+                //Si no debe informarse al usuario
             }
         }
     }

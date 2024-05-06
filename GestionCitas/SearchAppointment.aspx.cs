@@ -37,6 +37,7 @@ namespace GestionCitas
                     Response.Redirect("~/CancelAppointment.aspx");
                 }
             }
+            // Si no pudo ser convertido, enviar msj al usuario de su error
         }
     }
 }

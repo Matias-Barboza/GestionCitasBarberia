@@ -61,6 +61,20 @@ namespace GestionCitasControllers
             return result;
         }
 
+        public bool DeleteTurno(int idTurno) 
+        {
+            bool eliminated = false;
+
+            if(idTurno < 1000)
+            {
+                return false;
+            }
+
+            eliminated = turnoRepository.DeleteTurno(idTurno);
+
+            return eliminated;
+        }
+
         public bool SuccessConnection() 
         {
             int result = turnoRepository.TestConnection();
