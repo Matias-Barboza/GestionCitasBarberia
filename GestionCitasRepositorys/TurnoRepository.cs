@@ -14,7 +14,9 @@ namespace GestionCitasRepositorys
     {
         public bool CreateTurno(Turno turno)
         {
-            int created = -1;
+            bool created = false;
+            int rowsBefore = -1;
+            int rowsAfter = 0;
 
             using (NpgsqlConnection connection = new NpgsqlConnection(ConnectionString))
             {
@@ -22,19 +24,16 @@ namespace GestionCitasRepositorys
                 {
                     connection.Open();
 
-                    // Todavía sin funcionar
+                    // Comprueba numero de filas dentro de tabla turno antes de la operacion
+                    using (NpgsqlCommand command =  new NpgsqlCommand("SELECT COUNT(*) FROM turno", connection)) 
+                    {
+                        rowsBefore = (int) (long) command.ExecuteScalar();
+                    }
                     using (NpgsqlCommand command = new NpgsqlCommand(@"CALL sp_reservar_turno(@id_barbero_reserva, @id_servicio_reserva,
                                                                                               @fecha_hora_turno_reserva, @nombre_cliente_reserva,
                                                                                               @apellido_cliente_reserva, @telefono_cliente_reserva,
                                                                                               @email_cliente_reserva)", connection))
-                    //using (NpgsqlCommand command = new NpgsqlCommand(@"INSERT INTO turno(id_barbero, id_servicio, fecha_hora_turno,
-                    //                                                      nombre_cliente, apellido_cliente, telefono_cliente,
-                    //                                                      email_cliente)
-                    //                                                           VALUES(@id_barbero_reserva, @id_servicio_reserva, @fecha_hora_turno_reserva,
-                    //                                                               @nombre_cliente_reserva, @apellido_cliente_reserva, @telefono_cliente_reserva,
-                    //                                                               @email_cliente_reserva);", connection))
                     {
-                        command.CommandType = CommandType.StoredProcedure;
 
                         command.Parameters.AddWithValue("id_barbero_reserva", turno.IdBarbero);
                         command.Parameters.AddWithValue("id_servicio_reserva", turno.IdServicio);
@@ -43,9 +42,17 @@ namespace GestionCitasRepositorys
                         command.Parameters.AddWithValue("apellido_cliente_reserva", turno.ApellidoCliente);
                         command.Parameters.AddWithValue("telefono_cliente_reserva", turno.TelefonoCliente);
                         command.Parameters.AddWithValue("email_cliente_reserva", turno.EmailCliente);
-
-                        created = command.ExecuteNonQuery();
+                        
+                        command.ExecuteNonQuery();
                     }
+                    // Comprueba numero de filas dentro de tabla turno despues de la operacion
+                    using (NpgsqlCommand command = new NpgsqlCommand("SELECT COUNT(*) FROM turno", connection))
+                    {
+                        rowsAfter = (int)(long) command.ExecuteScalar();
+                    }
+
+                    // Si el numero de filas de antes + 1, es igual al numero de filas despues, asigno TRUE (creado) si no FALSE
+                    created = (rowsBefore + 1) == rowsAfter ? true : false;
                 }
                 catch (Exception ex)
                 {
@@ -54,7 +61,7 @@ namespace GestionCitasRepositorys
                 }
             }
 
-            return created == 1;
+            return created;
         }
 
         public bool UpdateTurno(int idTurno)
@@ -66,33 +73,23 @@ namespace GestionCitasRepositorys
         {
             int eliminated = -1;
 
-            using(NpgsqlConnection connection = new NpgsqlConnection(ConnectionString)) 
+            using (NpgsqlConnection connection = new NpgsqlConnection(ConnectionString))
             {
                 try
                 {
                     connection.Open();
 
-                    using (NpgsqlCommand command = new NpgsqlCommand("CALL sp_eliminar_turno(@id_turno)", connection)) 
+                    using (NpgsqlCommand command = new NpgsqlCommand("CALL sp_eliminar_turno(@id_turno)", connection))
                     {
-                        command.Parameters.Add(new NpgsqlParameter()
-                        {
-                            ParameterName = "id_turno",
-                            NpgsqlDbType = NpgsqlTypes.NpgsqlDbType.Integer,
-                            Value = idTurno
-                        });
+                        command.Parameters.AddWithValue("id_turno", idTurno);
 
                         command.ExecuteNonQuery();
                     }
-                    using(NpgsqlCommand command = new NpgsqlCommand("SELECT COUNT(*) FROM obtener_turno_por_id(@id_turno)", connection)) 
+                    using (NpgsqlCommand command = new NpgsqlCommand("SELECT COUNT(*) FROM obtener_turno_por_id(@id_turno)", connection))
                     {
-                        command.Parameters.Add(new NpgsqlParameter()
-                        {
-                            ParameterName = "id_turno",
-                            NpgsqlDbType = NpgsqlTypes.NpgsqlDbType.Integer,
-                            Value = idTurno
-                        });
+                        command.Parameters.AddWithValue("id_turno", idTurno);
 
-                        eliminated =  (int)(long) command.ExecuteScalar();
+                        eliminated = (int)(long) command.ExecuteScalar();
                     }
                 }
                 catch (Exception e)
@@ -117,12 +114,7 @@ namespace GestionCitasRepositorys
 
                     using (NpgsqlCommand command = new NpgsqlCommand("SELECT * FROM obtener_turno_por_id(@id_turno)", connection))
                     {
-                        command.Parameters.Add(new NpgsqlParameter()
-                        {
-                            ParameterName = "id_turno",
-                            NpgsqlDbType = NpgsqlTypes.NpgsqlDbType.Integer,
-                            Value = idTurno
-                        });
+                        command.Parameters.AddWithValue("id_turno", idTurno);
 
                         using (NpgsqlDataReader reader = command.ExecuteReader())
                         {
@@ -151,7 +143,42 @@ namespace GestionCitasRepositorys
 
         public List<Turno> GetAllTurnos()
         {
-            return new List<Turno>();
+            List<Turno> turnos = new List<Turno>();
+
+            using (NpgsqlConnection connection = new NpgsqlConnection(ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    using (NpgsqlCommand command = new NpgsqlCommand("SELECT * FROM obtener_todos_los_turnos()", connection))
+                    {
+
+                        using (NpgsqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                Turno turno = new Turno();
+
+                                turno.IdTurno = (int)reader[0];
+                                turno.Barbero.NombreCompleto = (string)reader[1];
+                                turno.Servicio.Descripcion = (string)reader[2];
+                                turno.FechaYHora = (DateTime)reader[3];
+                                turno.NombreCompletoCliente = (string)reader[4];
+
+                                turnos.Add(turno);
+                            }
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    connection.Close();
+                    throw e;
+                }
+            }
+
+            return turnos;
         }
     }
 }

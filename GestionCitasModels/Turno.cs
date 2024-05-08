@@ -25,6 +25,7 @@ namespace GestionCitasModels
         public DateTime FechaYHora { get => fechaYHora; set => fechaYHora = value; }
         public string NombreCliente { get => nombreCliente; set => nombreCliente = value; }
         public string ApellidoCliente { get => apellidoCliente; set => apellidoCliente = value; }
+        public string NombreCompletoCliente { get => $"{NombreCliente} {ApellidoCliente}"; set => NombreCompletoCliente = value; }
         public string TelefonoCliente { get => telefonoCliente; set => telefonoCliente = value; }
         public string EmailCliente { get => emailCliente; set => emailCliente = value; }
         public Servicio Servicio { get => servicio; set => servicio = value; }
