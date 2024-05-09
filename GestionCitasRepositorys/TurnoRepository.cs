@@ -12,11 +12,12 @@ namespace GestionCitasRepositorys
 {
     public class TurnoRepository : BaseRepository
     {
+
         public bool CreateTurno(Turno turno)
         {
             bool created = false;
-            int rowsBefore = -1;
-            int rowsAfter = 0;
+            int rowsBeforeOperation = -1;
+            int rowsAfterOperation = -1;
 
             using (NpgsqlConnection connection = new NpgsqlConnection(ConnectionString))
             {
@@ -27,7 +28,7 @@ namespace GestionCitasRepositorys
                     // Comprueba numero de filas dentro de tabla turno antes de la operacion
                     using (NpgsqlCommand command =  new NpgsqlCommand("SELECT COUNT(*) FROM turno", connection)) 
                     {
-                        rowsBefore = (int) (long) command.ExecuteScalar();
+                        rowsBeforeOperation = (int)(long) command.ExecuteScalar();
                     }
                     using (NpgsqlCommand command = new NpgsqlCommand(@"CALL sp_reservar_turno(@id_barbero_reserva, @id_servicio_reserva,
                                                                                               @fecha_hora_turno_reserva, @nombre_cliente_reserva,
@@ -35,8 +36,8 @@ namespace GestionCitasRepositorys
                                                                                               @email_cliente_reserva)", connection))
                     {
 
-                        command.Parameters.AddWithValue("id_barbero_reserva", turno.IdBarbero);
-                        command.Parameters.AddWithValue("id_servicio_reserva", turno.IdServicio);
+                        command.Parameters.AddWithValue("id_barbero_reserva", turno.Barbero.Id);
+                        command.Parameters.AddWithValue("id_servicio_reserva", turno.Servicio.Id);
                         command.Parameters.AddWithValue("fecha_hora_turno_reserva", turno.FechaYHora);
                         command.Parameters.AddWithValue("nombre_cliente_reserva", turno.NombreCliente);
                         command.Parameters.AddWithValue("apellido_cliente_reserva", turno.ApellidoCliente);
@@ -48,11 +49,11 @@ namespace GestionCitasRepositorys
                     // Comprueba numero de filas dentro de tabla turno despues de la operacion
                     using (NpgsqlCommand command = new NpgsqlCommand("SELECT COUNT(*) FROM turno", connection))
                     {
-                        rowsAfter = (int)(long) command.ExecuteScalar();
+                        rowsAfterOperation = (int)(long) command.ExecuteScalar();
                     }
 
                     // Si el numero de filas de antes + 1, es igual al numero de filas despues, asigno TRUE (creado) si no FALSE
-                    created = (rowsBefore + 1) == rowsAfter ? true : false;
+                    created = (rowsBeforeOperation + 1) == rowsAfterOperation ? true : false;
                 }
                 catch (Exception ex)
                 {
@@ -64,9 +65,41 @@ namespace GestionCitasRepositorys
             return created;
         }
 
-        public bool UpdateTurno(int idTurno)
+        public bool UpdateTurno(Turno turno)
         {
-            return true;
+            int updated = -1;
+
+            using(NpgsqlConnection connection = new NpgsqlConnection(ConnectionString)) 
+            {
+                try
+                {
+                    connection.Open();
+
+                    using (NpgsqlCommand command = new NpgsqlCommand(@"CALL sp_editar_turno(@id_turno, @id_barbero, @id_servicio,
+                                                                                           @fecha_hora_turno, @nombre_cliente, @apellido_cliente,
+                                                                                           @telefono_cliente, @email_cliente)", connection))
+                    {
+
+                        command.Parameters.AddWithValue("id_turno", turno.IdTurno);
+                        command.Parameters.AddWithValue("id_barbero", turno.Barbero.Id);
+                        command.Parameters.AddWithValue("id_servicio", turno.Servicio.Id);
+                        command.Parameters.AddWithValue("fecha_hora_turno", turno.FechaYHora);
+                        command.Parameters.AddWithValue("nombre_cliente", turno.NombreCliente);
+                        command.Parameters.AddWithValue("apellido_cliente", turno.ApellidoCliente);
+                        command.Parameters.AddWithValue("telefono_cliente", turno.TelefonoCliente);
+                        command.Parameters.AddWithValue("email_cliente", turno.EmailCliente);
+
+                        updated = command.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    connection.Close();
+                    throw ex;
+                }
+            }
+
+            return updated == 1;
         }
 
         public bool DeleteTurno(int idTurno)

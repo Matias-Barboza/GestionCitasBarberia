@@ -76,8 +76,8 @@ namespace GestionCitas
         {
             Turno nuevoTurno = new Turno();
 
-            nuevoTurno.IdBarbero = BarbersDropDownList.SelectedIndex;
-            nuevoTurno.IdServicio = ServicesDropDownList.SelectedIndex;
+            nuevoTurno.Barbero.Id = BarbersDropDownList.SelectedIndex;
+            nuevoTurno.Servicio.Id = ServicesDropDownList.SelectedIndex;
             nuevoTurno.FechaYHora = Calendar.SelectedDate;
             nuevoTurno.NombreCliente = NameTextBox.Text;
             nuevoTurno.ApellidoCliente = SurnameTextBox.Text;

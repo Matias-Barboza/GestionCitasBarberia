@@ -11,11 +11,11 @@ namespace GestionCitasModels
     {
         public TurnoValidator() 
         {
-            RuleFor(Turno => Turno.IdBarbero)
+            RuleFor(Turno => Turno.Barbero.Id)
                 .NotEmpty().WithMessage("Es obligatorio seleccionar un barbero para la cita.")
                 .GreaterThan(0).WithMessage("Debe elegir una opción válida.");
 
-            RuleFor(Turno => Turno.IdServicio)
+            RuleFor(Turno => Turno.Barbero.Id)
                 .NotEmpty().WithMessage("Es obligatorio seleccionar un servicio para la cita.")
                 .GreaterThan(0).WithMessage("Debe elegir una opción válida.");
 

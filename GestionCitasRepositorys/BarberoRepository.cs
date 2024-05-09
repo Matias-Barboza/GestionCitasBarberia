@@ -1,16 +1,130 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+
+using Npgsql;
+using GestionCitasModels;
 
 namespace GestionCitasRepositorys
 {
     public class BarberoRepository : BaseRepository
     {
-        public BarberoRepository()
-        { 
-            
+
+        public bool CreateNewBarbero(Barbero barbero) 
+        {
+            bool created = false;
+            int rowsBeforeOperation = -1;
+            int rowsAfterOperation = -1;
+
+            using(NpgsqlConnection connection = new NpgsqlConnection(ConnectionString)) 
+            {
+                try
+                {
+                    connection.Open();
+
+                    using (NpgsqlCommand command = new NpgsqlCommand("SELECT COUNT(*) FROM barbero", connection))
+                    {
+                        rowsBeforeOperation = (int)(long)command.ExecuteScalar();
+                    }
+                    using (NpgsqlCommand command = new NpgsqlCommand(@"CALL sp_crear_barbero(@nombre_barbero_nuevo,
+                                                                                            @apellido_barbero_nuevo,
+                                                                                            @email_barbero_nuevo)", connection)) 
+                    {
+
+                        command.Parameters.AddWithValue("nombre_barbero_nuevo", barbero.Nombre);
+                        command.Parameters.AddWithValue("apellido_barbero_nuevo", barbero.Apellido);
+                        command.Parameters.AddWithValue("email_barbero_nuevo", barbero.Email);
+
+                        command.ExecuteNonQuery();
+                    }
+                    using (NpgsqlCommand command = new NpgsqlCommand("SELECT COUNT(*) FROM barbero", connection))
+                    {
+                        rowsAfterOperation = (int)(long)command.ExecuteScalar();
+                    }
+
+                    created = (rowsBeforeOperation + 1) == rowsAfterOperation ? true : false;
+                }
+                catch (Exception ex)
+                {
+                    connection.Close();
+                    throw ex;
+                }
+            }
+
+            return created;
         }
+
+        public bool UpdateBarbero(Barbero barbero) 
+        {
+            int updated = -1;
+
+            using(NpgsqlConnection connection = new NpgsqlConnection(ConnectionString)) 
+            {
+                try
+                {
+                    connection.Open();
+
+                    using(NpgsqlCommand command = new NpgsqlCommand(@"CALL sp_editar_barbero(@id_barbero_editar, @nombre_nuevo,
+                                                                                             @apellido_nuevo, @email_nuevo)", connection)) 
+                    {
+
+                        command.Parameters.AddWithValue("id_barbero_editar", barbero.Id);
+                        command.Parameters.AddWithValue("nombre_nuevo", barbero.Nombre);
+                        command.Parameters.AddWithValue("apellido_nuevo", barbero.Apellido);
+                        command.Parameters.AddWithValue("email_nuevo", barbero.Email);
+
+                        updated = command.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    connection.Close();
+                    throw ex;
+                }
+            }
+
+            return updated == 1;
+        }
+
+        public bool DeleteBarbero(int idBarbero) 
+        {
+            int eliminated = -1;
+
+            
+            using(NpgsqlConnection connection = new NpgsqlConnection(ConnectionString)) 
+            {
+                try
+                {
+                    connection.Close();
+
+                    using(NpgsqlCommand command = new NpgsqlCommand(@"CALL sp_eliminar_barbero(@id_barbero)", connection)) 
+                    {
+                        
+                        command.Parameters.AddWithValue("id_barbero", idBarbero);
+
+                        command.ExecuteNonQuery();
+                    }
+                    using (NpgsqlCommand command = new NpgsqlCommand("SELECT COUNT(*) FROM obtener_barbero_por_id(@id_barbero)", connection)) 
+                    {
+
+                        command.Parameters.AddWithValue("id_barbero", idBarbero);
+
+                        eliminated = (int)(long) command.ExecuteScalar(); 
+                    }
+                }
+                catch (Exception ex)
+                {
+                    connection.Close();
+                    throw ex;
+                }
+            }
+
+            return eliminated == 0;
+        }
+
+
     }
 }
