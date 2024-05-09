@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
-
+﻿using GestionCitasModels;
 using Npgsql;
-using GestionCitasModels;
+using System;
+using System.Collections.Generic;
 
 namespace GestionCitasRepositorys
 {

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluentValidation.Results;
+﻿using FluentValidation.Results;
 using GestionCitasModels;
 using GestionCitasRepositorys;
+using System;
 
 namespace GestionCitasControllers
 {
@@ -72,6 +68,11 @@ namespace GestionCitasControllers
         {
             bool deleted = false;
 
+            if (idBarbero <= 0) 
+            {
+                return deleted;
+            }
+
             deleted = barberoRepository.DeleteBarbero(idBarbero);
 
             return deleted;
@@ -79,7 +80,12 @@ namespace GestionCitasControllers
 
         public Barbero GetBarberoById(int idBarbero) 
         {
-            barberoRepository
+            if (idBarbero <= 0) 
+            {
+                return null;
+            }
+
+            return barberoRepository.GetBarberoById(idBarbero);
         }
     }
 }

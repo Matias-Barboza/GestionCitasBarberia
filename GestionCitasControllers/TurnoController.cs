@@ -1,8 +1,8 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
-
 using GestionCitasModels;
 using GestionCitasRepositorys;
+using System.Collections.Generic;
 
 namespace GestionCitasControllers
 {
@@ -29,9 +29,9 @@ namespace GestionCitasControllers
 
                 valid = result.IsValid;
             }
-            catch(ValidationException e) 
+            catch(ValidationException ex) 
             {
-                throw e;
+                throw ex;
             }
 
             return valid;
@@ -87,6 +87,11 @@ namespace GestionCitasControllers
             }
 
             return turnoRepository.GetTurnoById(idTurno);
+        }
+
+        public List<Turno> GetAllTurnos() 
+        {
+            return turnoRepository.GetAllTurnos();
         }
 
         public bool SuccessConnection() 

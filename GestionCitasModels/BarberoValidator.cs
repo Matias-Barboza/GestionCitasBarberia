@@ -12,6 +12,10 @@ namespace GestionCitasModels
     {
         public BarberoValidator() 
         {
+            RuleFor(Barbero => Barbero.Id)
+                .NotEmpty().WithMessage("El ID del barbero no puede estar vacío")
+                .GreaterThan(0).WithMessage("ID de barbero inválido.");
+
             RuleFor(Barbero => Barbero.Nombre)
                 .NotEmpty().WithMessage("El nombre del barbero no puede estar vacío.")
                 .Matches("^[a-zA-Z]+(?:\\s+[a-zA-Z]+)*$").WithMessage("El nombre solo puede contener letras.");

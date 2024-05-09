@@ -27,7 +27,7 @@ namespace GestionCitas
 
             if(converted) 
             {
-                Turno turno = turnoController.GetById(id);
+                Turno turno = turnoController.GetTurnoById(id);
 
                 if(turno != null)
                 {
