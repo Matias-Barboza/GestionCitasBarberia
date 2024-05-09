@@ -24,20 +24,21 @@ namespace GestionCitasModels
                 .GreaterThan(DateTime.Today.AddDays(-1));
 
             RuleFor(Turno => Turno.NombreCliente)
-                .NotEmpty().WithMessage("La información 'Nombre' es obligatoria.")
-                .Matches("^[a-zA-Z]+(?:\\s+[a-zA-Z]+)*$");
+                .NotEmpty().WithMessage("La información 'Nombre' es obligatoria, no puede estar vacía.")
+                .Matches("^[a-zA-Z]+(?:\\s+[a-zA-Z]+)*$").WithMessage("El nombre solo puede contener letras.");
 
             RuleFor(Turno => Turno.ApellidoCliente)
-                .NotEmpty().WithMessage("La información 'Apellido' es obligatoria.")
-                .Matches("^[a-zA-Z]+(?:\\s+[a-zA-Z]+)*$");
+                .NotEmpty().WithMessage("La información 'Apellido' es obligatoria, no puede estar vacía.")
+                .Matches("^[a-zA-Z]+(?:\\s+[a-zA-Z]+)*$").WithMessage("El apellido solo puede contener letras.");
 
             RuleFor(Turno => Turno.TelefonoCliente)
-                .NotEmpty().WithMessage("La información: Teléfono es obligatoria.")
-                .Matches("^(?:\\+?54)?\\d{10}$");
+                .NotEmpty().WithMessage("La información 'Teléfono' es obligatoria, no puede estar vacía.")
+                .Matches("^(?:\\+?54)?\\d{10}$").WithMessage("El teléfono solo puede contener números.");
 
             RuleFor(Turno => Turno.EmailCliente)
-                .NotEmpty().WithMessage("La información: Email es obligatoria.")
-                .Matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+                .NotEmpty().WithMessage("La información 'Email' es obligatoria, no puede estar vacía.")
+                .EmailAddress(FluentValidation.Validators.EmailValidationMode.AspNetCoreCompatible).WithMessage("La dirección proporcionada debe respetar una estructura de email");
+                //.Matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$").WithMessage("La dirección proporcionada debe respetar una estructura de email.");
         }
     }
 }

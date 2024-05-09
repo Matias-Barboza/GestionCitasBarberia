@@ -37,28 +37,32 @@ namespace GestionCitasControllers
             return valid;
         }
 
-        public Turno GetById(int idTurno) 
+        public bool CreateTurno(Turno turno) 
         {
-            if(idTurno < 1000) 
-            {
-                return null;
-            }
-
-            return turnoRepository.GetTurnoById(idTurno);
-        }
-
-        public bool CreateNewTurno(Turno turno) 
-        {
-            bool result = false;
+            bool created = false;
 
             if (!IsValidAppointment(turno))
             {
-                return result;
+                return created;
             }
 
-            result = turnoRepository.CreateTurno(turno);
+            created = turnoRepository.CreateTurno(turno);
 
-            return result;
+            return created;
+        }
+
+        public bool UpdateTurno(Turno turno) 
+        {
+            bool updated = false;
+
+            if (!IsValidAppointment(turno)) 
+            {
+                return updated;
+            }
+
+            updated = turnoRepository.UpdateTurno(turno);
+
+            return updated;
         }
 
         public bool DeleteTurno(int idTurno) 
@@ -73,6 +77,16 @@ namespace GestionCitasControllers
             eliminated = turnoRepository.DeleteTurno(idTurno);
 
             return eliminated;
+        }
+
+        public Turno GetTurnoById(int idTurno) 
+        {
+            if(idTurno < 1000) 
+            {
+                return null;
+            }
+
+            return turnoRepository.GetTurnoById(idTurno);
         }
 
         public bool SuccessConnection() 

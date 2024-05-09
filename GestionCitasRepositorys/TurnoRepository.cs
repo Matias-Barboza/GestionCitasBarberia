@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Npgsql;
 using System.Data;
 
+using Npgsql;
 using GestionCitasModels;
 
 namespace GestionCitasRepositorys
