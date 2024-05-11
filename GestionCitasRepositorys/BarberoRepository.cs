@@ -177,15 +177,15 @@ namespace GestionCitasRepositorys
 
                         using (NpgsqlDataReader reader = command.ExecuteReader())
                         {
-                            while(reader.Read()) 
+                            while (reader.Read())
                             {
-                                
+
                                 Barbero barbero = new Barbero();
 
-                                barbero.Id = (int) reader[0];
-                                barbero.Nombre = (string) reader[1];
-                                barbero.Apellido = (string) reader[2];
-                                barbero.Email = (string) reader[0];
+                                barbero.Id = (int)reader[0];
+                                barbero.Nombre = (string)reader[1];
+                                barbero.Apellido = (string)reader[2];
+                                barbero.Email = (string)reader[0];
 
                                 barberos.Add(barbero);
                             }
@@ -200,6 +200,40 @@ namespace GestionCitasRepositorys
             }
 
             return barberos;
+        }
+
+        public List<string> GetAllBarberosFullNames()
+        {
+            List<string> fullNames = null;
+
+            using (NpgsqlConnection connection = new NpgsqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                try
+                {
+                    using (NpgsqlCommand command = new NpgsqlCommand("SELECT * FROM lista_nombre_completo_barberos()", connection))
+                    {
+
+                        using (NpgsqlDataReader reader = command.ExecuteReader())
+                        {
+                            fullNames = new List<string>();
+                            
+                            while (reader.Read())
+                            {
+                                fullNames.Add((string) reader[0]);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    connection.Close();
+                    throw ex;
+                }
+            }
+
+            return fullNames;
         }
     }
 }

@@ -190,5 +190,38 @@ namespace GestionCitasRepositorys
 
             return servicios;
         }
+
+        public List<string> GetAllServiciosDescription()
+        {
+            List<string> descripcionServicios = new List<string>();
+
+            using (NpgsqlConnection connection = new NpgsqlConnection(ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    using (NpgsqlCommand command = new NpgsqlCommand("SELECT * FROM obtener_descripcion_todos_los_servicios()", connection))
+                    {
+
+                        using (NpgsqlDataReader reader = command.ExecuteReader())
+                        {
+
+                            while (reader.Read())
+                            {
+                                descripcionServicios.Add((string)reader[0]);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    connection.Close();
+                    throw ex;
+                }
+            }
+
+            return descripcionServicios;
+        }
     }
 }

@@ -94,5 +94,10 @@ namespace GestionCitasControllers
         {
             return servicioRepository.GetAllServicios();
         }
+
+        public List<string> GetAllServiciosDescription()
+        {
+            return servicioRepository.GetAllServiciosDescription();
+        }
     }
 }

@@ -80,7 +80,7 @@
 
                             <asp:Label Text="Fecha a reservar:" runat="server" for="date" CssClass="form-label" />
                             <asp:Calendar ID="Calendar" runat="server" CssClass="calendar" BorderColor="#2B3438" NextMonthText="&gt;" BorderWidth="2px" Font-Names="Work Sans" Font-Size="14pt" ForeColor="White" Height="200px"
-                                            NextPrevFormat="FullMonth" Width="100%" required="true" OnSelectionChanged="Calendar_SelectionChanged">
+                                NextPrevFormat="FullMonth" Width="100%" required="true" OnSelectionChanged="Calendar_SelectionChanged">
                                 <DayHeaderStyle Font-Bold="True" Font-Size="10pt" BackColor="#6E5C3D" />
                                 <NextPrevStyle Font-Bold="True" Font-Size="12pt" ForeColor="#333333" VerticalAlign="Bottom" />
                                 <OtherMonthDayStyle ForeColor="#999999" BackColor="#39454A" />
@@ -93,8 +93,8 @@
 
                         <div class="input-data-column">
 
-                            <asp:Label Text="Horario:" runat="server" for="hours" CssClass="form-label" />
-                            <asp:DropDownList name="hours" ID="HoursDropDownList" runat="server" CssClass="form-control" required="true"></asp:DropDownList>
+                            <asp:Label Text="Barbero:" runat="server" for="barber" CssClass="form-label" />
+                            <asp:DropDownList name="barber" ID="BarbersDropDownList" runat="server" CssClass="form-control" required="true"></asp:DropDownList>
 
                         </div>
 
@@ -105,8 +105,8 @@
 
                         <div class="input-data-column">
 
-                            <asp:Label Text="Barbero:" runat="server" for="barber" CssClass="form-label" />
-                            <asp:DropDownList name="barber" ID="BarbersDropDownList" runat="server" CssClass="form-control" required="true"></asp:DropDownList>
+                            <asp:Label Text="Horario:" runat="server" for="hours" CssClass="form-label" />
+                            <asp:DropDownList name="hours" ID="HoursDropDownList" runat="server" CssClass="form-control" required="true"></asp:DropDownList>
 
                         </div>
 
@@ -139,7 +139,7 @@
 
                     <div class="input-data-column">
 
-                            <asp:Label Text="Nota: Recuerde que unicamente trabajamos de martes a sábados." runat="server" CssClass="form-label-info" />
+                        <asp:Label Text="Nota: Recuerde que unicamente trabajamos de martes a sábados." runat="server" CssClass="form-label-info" />
 
                     </div>
 

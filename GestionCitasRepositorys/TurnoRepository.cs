@@ -209,7 +209,7 @@ namespace GestionCitasRepositorys
             return turnos;
         }
 
-        public List<TimeSpan> GetHourNotAvailablesOf(DateTime fecha) 
+        public List<TimeSpan> GetHourNotAvailablesOf(DateTime fecha, string nombreBarbero) 
         {
             List<TimeSpan> hoursNotAvailables = new List<TimeSpan>();
 
@@ -219,10 +219,11 @@ namespace GestionCitasRepositorys
                 {
                     connection.Open();
 
-                    using(NpgsqlCommand command = new NpgsqlCommand("SELECT * FROM obtener_horarios_ocupados_para_fecha(@fecha_a_consultar)", connection)) 
+                    using(NpgsqlCommand command = new NpgsqlCommand("SELECT * FROM obtener_horarios_ocupados_para(@fecha_a_consultar, @nombre_barbero)", connection)) 
                     {
                         
                         command.Parameters.AddWithValue("fecha_a_consultar", fecha);
+                        command.Parameters.AddWithValue("nombre_barbero", nombreBarbero);
 
                         using(NpgsqlDataReader reader = command.ExecuteReader()) 
                         {

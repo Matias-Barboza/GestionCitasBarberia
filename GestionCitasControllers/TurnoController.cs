@@ -95,9 +95,9 @@ namespace GestionCitasControllers
             return turnoRepository.GetAllTurnos();
         }
 
-        public List<TimeSpan> GetAllHoursNotAvailablesOf(DateTime fecha) 
+        public List<TimeSpan> GetAllHoursNotAvailablesOf(DateTime fecha, string nombreBarbero) 
         {
-            return turnoRepository.GetHourNotAvailablesOf(fecha);
+            return turnoRepository.GetHourNotAvailablesOf(fecha, nombreBarbero);
         }
 
         public bool SuccessConnection() 

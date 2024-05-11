@@ -60,15 +60,6 @@ namespace GestionCitas
         protected global::System.Web.UI.WebControls.Calendar Calendar;
 
         /// <summary>
-        /// Control HoursDropDownList.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList HoursDropDownList;
-
-        /// <summary>
         /// Control BarbersDropDownList.
         /// </summary>
         /// <remarks>
@@ -76,6 +67,15 @@ namespace GestionCitas
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList BarbersDropDownList;
+
+        /// <summary>
+        /// Control HoursDropDownList.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList HoursDropDownList;
 
         /// <summary>
         /// Control ServicesDropDownList.

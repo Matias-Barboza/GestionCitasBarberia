@@ -14,72 +14,73 @@ namespace GestionCitas
     public partial class BookAppointment : System.Web.UI.Page
     {
         private TurnoController turnoController;
+        private BarberoController barberoController;
+        private ServicioController servicioController;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             turnoController = new TurnoController();
+            barberoController = new BarberoController();
+            servicioController = new ServicioController();
 
             if (!IsPostBack) 
             {
                 Calendar.SelectedDate = DateTime.Today;
-                LoadHoursFor(Calendar.SelectedDate);
                 LoadBarbers();
+                LoadHoursFor(Calendar.SelectedDate, BarbersDropDownList.SelectedValue);
                 LoadServices();
-            }
-            else 
-            {
-                HoursDropDownList.Items.Clear();
             }
         }
 
         //------------------------------------------------------- MÉTODOS DE PRUEBA -----------------------------------------------------------
 
-        private void LoadHoursFor(DateTime fecha)
+        private void LoadHoursFor(DateTime fecha, string nombreBarbero)
         {
-            Dictionary<string, TimeSpan> allHours = GetAllHours(fecha.DayOfWeek == DayOfWeek.Saturday);
-            List<TimeSpan> hoursNotAvailables = turnoController.GetAllHoursNotAvailablesOf(fecha);
-
-
-            // Encuentro los horarios no disponibles, y los elimino de todos los horarios
-            foreach(TimeSpan hourNotAvailable in hoursNotAvailables) 
+            if(fecha.DayOfWeek == DayOfWeek.Sunday || fecha.DayOfWeek == DayOfWeek.Monday) 
             {
-                if (allHours.ContainsValue(hourNotAvailable)) 
-                {
-                    KeyValuePair<string, TimeSpan> keyValuePair = allHours.First(x => x.Value == hourNotAvailable);
-
-                    allHours.Remove(keyValuePair.Key);
-                }
+                HoursDropDownList.Items.Add("Horarios no disponibles para la fecha seleccionada...");
+                return;
             }
 
-            // Ahora allHours debería contener unicamente los horarios disponibles
-            foreach(string hourAvailable in allHours.Keys) 
+            if(HoursDropDownList.Items.Count != 0) 
             {
-                HoursDropDownList.Items.Add(hourAvailable.ToString());
+                HoursDropDownList.Items.Clear();
+            }
+
+            List<string> hoursAvailables = GetAllHoursAvailables(fecha , nombreBarbero);
+
+            HoursDropDownList.Items.Add("Seleccione un horario...");
+            HoursDropDownList.SelectedIndex = 0;
+
+            // Ahora hoursAvailables debería contener unicamente los horarios disponibles
+            foreach(string hourAvailable in hoursAvailables) 
+            {
+                HoursDropDownList.Items.Add(new ListItem(hourAvailable));
             }
         }
 
         private void LoadBarbers()
         {
+            List<string> barbersFullNames = barberoController.GetAllBarberosFullNames();
+
             BarbersDropDownList.Items.Add(new ListItem("Seleccione una opción..."));
-            BarbersDropDownList.Items.Add(new ListItem("Matias Aquino"));
-            BarbersDropDownList.Items.Add(new ListItem("Alexis Reyes"));
+
+            foreach(string fullName in barbersFullNames) 
+            {
+                BarbersDropDownList.Items.Add(fullName);
+            }
         }
 
         private void LoadServices()
         {
-            //Solo para probar la carga de DropDownList
+            List<string> services = servicioController.GetAllServiciosDescription();
+            
             ServicesDropDownList.Items.Add(new ListItem("Seleccione una opción..."));
-            ServicesDropDownList.Items.Add(new ListItem("Barba"));
-            ServicesDropDownList.Items.Add(new ListItem("Barba y perfilado de cejas"));
-            ServicesDropDownList.Items.Add(new ListItem("Corte"));
-            ServicesDropDownList.Items.Add(new ListItem("Corte y barba"));
-            ServicesDropDownList.Items.Add(new ListItem("Corte y perfilado de barba"));
-            ServicesDropDownList.Items.Add(new ListItem("Corte y perfilado de cejas"));
-            ServicesDropDownList.Items.Add(new ListItem("Corte, barba y perfilado de cejas"));
-            ServicesDropDownList.Items.Add(new ListItem("Corte, perfilado de barba y perfilado de cejas"));
-            ServicesDropDownList.Items.Add(new ListItem("Perfilado de barba"));
-            ServicesDropDownList.Items.Add(new ListItem("Perfilado de barba y perfilado de cejas"));
-            ServicesDropDownList.Items.Add(new ListItem("Perfilado de cejas"));
+            
+            foreach(string service in services) 
+            {
+                ServicesDropDownList.Items.Add(new ListItem(service));
+            }
         }
 
         //-------------------------------------------------------------------------------------------------------------------------------------
@@ -88,9 +89,26 @@ namespace GestionCitas
         {
             Turno nuevoTurno = new Turno();
 
+            // Informacion básica del turno (Barbero elegido y servicio seleccionado)
             nuevoTurno.Barbero.Id = BarbersDropDownList.SelectedIndex;
             nuevoTurno.Servicio.Id = ServicesDropDownList.SelectedIndex;
-            nuevoTurno.FechaYHora = Calendar.SelectedDate;
+
+            // Mapeo fecha y hora en base al calendario (Calendar) y a los horarios disponibles (HoursDropDownList)
+            bool isSaturday = Calendar.SelectedDate.DayOfWeek == DayOfWeek.Saturday;
+
+            // Obtengo el horario en TimeSpan para el horario en string pasado como argumento que viene del HoursDropDownList
+            TimeSpan hourSelected = GetHourFor(HoursDropDownList.SelectedValue, isSaturday);
+
+            nuevoTurno.FechaYHora = new DateTime(
+                                                 Calendar.SelectedDate.Year,
+                                                 Calendar.SelectedDate.Month,
+                                                 Calendar.SelectedDate.Day,
+                                                 hourSelected.Hours,
+                                                 hourSelected.Minutes,
+                                                 hourSelected.Seconds
+                                                 );
+
+            // Informacion del cliente
             nuevoTurno.NombreCliente = NameTextBox.Text;
             nuevoTurno.ApellidoCliente = SurnameTextBox.Text;
             nuevoTurno.TelefonoCliente = TelTextBox.Text;
@@ -106,7 +124,7 @@ namespace GestionCitas
 
         protected void Calendar_SelectionChanged(object sender, EventArgs e)
         {
-            LoadHoursFor(Calendar.SelectedDate);
+            LoadHoursFor(Calendar.SelectedDate, BarbersDropDownList.SelectedValue);
         }
 
         private Dictionary<string, TimeSpan> GetAllHours(bool isSaturday) 
@@ -123,6 +141,35 @@ namespace GestionCitas
             }
 
             return allHours;
+        }
+
+        public List<string> GetAllHoursAvailables(DateTime fecha, string nombreBarbero) 
+        {
+            Dictionary<string, TimeSpan> allHours = GetAllHours(fecha.DayOfWeek == DayOfWeek.Saturday);
+            List<TimeSpan> hoursNotAvailables = turnoController.GetAllHoursNotAvailablesOf(fecha, nombreBarbero);
+            List<string> hoursAvailables = null;
+
+            // Encuentro los horarios no disponibles, y los elimino de todos los horarios, quedando unicamente los disponibles
+            foreach (TimeSpan hourNotAvailable in hoursNotAvailables)
+            {
+                if (allHours.ContainsValue(hourNotAvailable))
+                {
+                    KeyValuePair<string, TimeSpan> keyValuePair = allHours.First(x => x.Value == hourNotAvailable);
+
+                    allHours.Remove(keyValuePair.Key);
+                }
+            }
+
+            hoursAvailables = allHours.Keys.ToList();
+
+            return hoursAvailables;
+        }
+
+        public TimeSpan GetHourFor(string keyHour, bool isSaturday) 
+        {
+            Dictionary<string, TimeSpan> allHours = GetAllHours(isSaturday);
+
+            return allHours.First(x => x.Key == keyHour).Value;
         }
     }
 }

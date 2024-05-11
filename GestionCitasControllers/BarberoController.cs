@@ -2,6 +2,7 @@
 using GestionCitasModels;
 using GestionCitasRepositorys;
 using System;
+using System.Collections.Generic;
 
 namespace GestionCitasControllers
 {
@@ -86,6 +87,16 @@ namespace GestionCitasControllers
             }
 
             return barberoRepository.GetBarberoById(idBarbero);
+        }
+
+        public List<Barbero> GetAllBarberos() 
+        {
+            return barberoRepository.GetAllBarberos();
+        }
+
+        public List<string> GetAllBarberosFullNames() 
+        {
+            return barberoRepository.GetAllBarberosFullNames();
         }
     }
 }
