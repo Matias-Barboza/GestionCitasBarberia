@@ -2,6 +2,7 @@
 using FluentValidation.Results;
 using GestionCitasModels;
 using GestionCitasRepositorys;
+using System;
 using System.Collections.Generic;
 
 namespace GestionCitasControllers
@@ -92,6 +93,11 @@ namespace GestionCitasControllers
         public List<Turno> GetAllTurnos() 
         {
             return turnoRepository.GetAllTurnos();
+        }
+
+        public List<TimeSpan> GetAllHoursNotAvailablesOf(DateTime fecha) 
+        {
+            return turnoRepository.GetHourNotAvailablesOf(fecha);
         }
 
         public bool SuccessConnection() 

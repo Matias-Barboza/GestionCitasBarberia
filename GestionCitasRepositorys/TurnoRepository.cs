@@ -208,5 +208,41 @@ namespace GestionCitasRepositorys
 
             return turnos;
         }
+
+        public List<TimeSpan> GetHourNotAvailablesOf(DateTime fecha) 
+        {
+            List<TimeSpan> hoursNotAvailables = new List<TimeSpan>();
+
+            using(NpgsqlConnection connection = new NpgsqlConnection(ConnectionString)) 
+            {
+                try
+                {
+                    connection.Open();
+
+                    using(NpgsqlCommand command = new NpgsqlCommand("SELECT * FROM obtener_horarios_ocupados_para_fecha(@fecha_a_consultar)", connection)) 
+                    {
+                        
+                        command.Parameters.AddWithValue("fecha_a_consultar", fecha);
+
+                        using(NpgsqlDataReader reader = command.ExecuteReader()) 
+                        {
+                            while(reader.Read()) 
+                            {
+                                TimeSpan hourNotAvailable = (TimeSpan) reader[0];
+
+                                hoursNotAvailables.Add(hourNotAvailable);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    connection.Close();
+                    throw ex;
+                }
+            }
+
+            return hoursNotAvailables;
+        }
     }
 }

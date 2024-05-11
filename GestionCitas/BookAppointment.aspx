@@ -79,7 +79,8 @@
                         <div class="input-data-column">
 
                             <asp:Label Text="Fecha a reservar:" runat="server" for="date" CssClass="form-label" />
-                            <asp:Calendar ID="Calendar" runat="server" CssClass="calendar" BorderColor="#2B3438" NextMonthText="&gt;" BorderWidth="2px" Font-Names="Work Sans" Font-Size="14pt" ForeColor="White" Height="200px" NextPrevFormat="FullMonth" Width="100%" required="true">
+                            <asp:Calendar ID="Calendar" runat="server" CssClass="calendar" BorderColor="#2B3438" NextMonthText="&gt;" BorderWidth="2px" Font-Names="Work Sans" Font-Size="14pt" ForeColor="White" Height="200px"
+                                            NextPrevFormat="FullMonth" Width="100%" required="true" OnSelectionChanged="Calendar_SelectionChanged">
                                 <DayHeaderStyle Font-Bold="True" Font-Size="10pt" BackColor="#6E5C3D" />
                                 <NextPrevStyle Font-Bold="True" Font-Size="12pt" ForeColor="#333333" VerticalAlign="Bottom" />
                                 <OtherMonthDayStyle ForeColor="#999999" BackColor="#39454A" />

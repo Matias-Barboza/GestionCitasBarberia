@@ -21,29 +21,41 @@ namespace GestionCitas
 
             if (!IsPostBack) 
             {
-                LoadHours();
+                Calendar.SelectedDate = DateTime.Today;
+                LoadHoursFor(Calendar.SelectedDate);
                 LoadBarbers();
                 LoadServices();
+            }
+            else 
+            {
+                HoursDropDownList.Items.Clear();
             }
         }
 
         //------------------------------------------------------- MÉTODOS DE PRUEBA -----------------------------------------------------------
 
-        private void LoadHours()
+        private void LoadHoursFor(DateTime fecha)
         {
-            HoursDropDownList.Items.Add(new ListItem("Seleccione una opción..."));
-            HoursDropDownList.Items.Add(new ListItem("9:00 AM"));
-            HoursDropDownList.Items.Add(new ListItem("10:00 AM"));
-            HoursDropDownList.Items.Add(new ListItem("11:00 AM"));
-            HoursDropDownList.Items.Add(new ListItem("12:00 AM"));
-            HoursDropDownList.Items.Add(new ListItem("14:00 AM"));
-            HoursDropDownList.Items.Add(new ListItem("15:00 AM"));
-            HoursDropDownList.Items.Add(new ListItem("16:00 AM"));
-            HoursDropDownList.Items.Add(new ListItem("17:00 AM"));
-            HoursDropDownList.Items.Add(new ListItem("18:00 AM"));
-            HoursDropDownList.Items.Add(new ListItem("19:00 AM"));
-            HoursDropDownList.Items.Add(new ListItem("20:00 AM"));
-            HoursDropDownList.Items.Add(new ListItem("21:00 AM"));
+            Dictionary<string, TimeSpan> allHours = GetAllHours(fecha.DayOfWeek == DayOfWeek.Saturday);
+            List<TimeSpan> hoursNotAvailables = turnoController.GetAllHoursNotAvailablesOf(fecha);
+
+
+            // Encuentro los horarios no disponibles, y los elimino de todos los horarios
+            foreach(TimeSpan hourNotAvailable in hoursNotAvailables) 
+            {
+                if (allHours.ContainsValue(hourNotAvailable)) 
+                {
+                    KeyValuePair<string, TimeSpan> keyValuePair = allHours.First(x => x.Value == hourNotAvailable);
+
+                    allHours.Remove(keyValuePair.Key);
+                }
+            }
+
+            // Ahora allHours debería contener unicamente los horarios disponibles
+            foreach(string hourAvailable in allHours.Keys) 
+            {
+                HoursDropDownList.Items.Add(hourAvailable.ToString());
+            }
         }
 
         private void LoadBarbers()
@@ -84,12 +96,33 @@ namespace GestionCitas
             nuevoTurno.TelefonoCliente = TelTextBox.Text;
             nuevoTurno.EmailCliente = EmailTextBox.Text;
 
-            bool created = turnoController.CreateNewTurno(nuevoTurno);
+            bool created = turnoController.CreateTurno(nuevoTurno);
 
             if (created)
             {
                 Response.Redirect("Default.aspx");
             }
+        }
+
+        protected void Calendar_SelectionChanged(object sender, EventArgs e)
+        {
+            LoadHoursFor(Calendar.SelectedDate);
+        }
+
+        private Dictionary<string, TimeSpan> GetAllHours(bool isSaturday) 
+        {
+            // Si es Sábado, el primer horario es 10:00 AM, si no debe ser 9:00 AM
+            int firstHourOfDay = isSaturday ? 10 : 9;
+            Dictionary<string, TimeSpan> allHours = new Dictionary<string, TimeSpan>();
+
+            for(int i = firstHourOfDay; i <= 21; i++) 
+            {
+                string abreviattion = (i <= 12) ? "AM" : "PM";
+
+                allHours.Add($"{i}:00 {abreviattion}", new TimeSpan(i, 0, 0));
+            }
+
+            return allHours;
         }
     }
 }
