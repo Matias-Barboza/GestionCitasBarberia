@@ -94,7 +94,8 @@
                         <div class="input-data-column">
 
                             <asp:Label Text="Barbero:" runat="server" for="barber" CssClass="form-label" />
-                            <asp:DropDownList name="barber" ID="BarbersDropDownList" runat="server" CssClass="form-control" required="true"></asp:DropDownList>
+                            <asp:DropDownList name="barber" ID="BarbersDropDownList" runat="server" CssClass="form-control" required="true" AutoPostBack="true" 
+                                OnSelectedIndexChanged="BarbersDropDownList_SelectedIndexChanged"></asp:DropDownList>
 
                         </div>
 
@@ -106,14 +107,15 @@
                         <div class="input-data-column">
 
                             <asp:Label Text="Horario:" runat="server" for="hours" CssClass="form-label" />
-                            <asp:DropDownList name="hours" ID="HoursDropDownList" runat="server" CssClass="form-control" required="true"></asp:DropDownList>
+                            <asp:DropDownList name="hours" ID="HoursDropDownList" runat="server" CssClass="form-control" required="true" AutoPostBack="true"></asp:DropDownList>
 
                         </div>
 
                         <div class="input-data-column">
 
                             <asp:Label Text="Servicio:" runat="server" for="service" CssClass="form-label" />
-                            <asp:DropDownList name="service" ID="ServicesDropDownList" runat="server" CssClass="form-control" required="true"></asp:DropDownList>
+                            <asp:DropDownList name="service" ID="ServicesDropDownList" runat="server" CssClass="form-control" required="true" AutoPostBack="true"
+                                OnSelectedIndexChanged="ServicesDropDownList_SelectedIndexChanged"></asp:DropDownList>
 
                         </div>
 

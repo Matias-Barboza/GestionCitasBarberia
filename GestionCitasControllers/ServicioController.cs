@@ -90,6 +90,16 @@ namespace GestionCitasControllers
             return servicioRepository.GetServicioById(idServicio);
         }
 
+        public int GetTiempoEstimadoServicioById(int idServicio) 
+        {
+            return servicioRepository.GetTiempoEstimadoServicioById(idServicio);
+        }
+
+        public decimal GetPrecioServicioById(int idServicio) 
+        {
+            return servicioRepository.GetPrecioServicioById(idServicio);
+        }
+
         public List<Servicio> GetAllServicios()
         {
             return servicioRepository.GetAllServicios();

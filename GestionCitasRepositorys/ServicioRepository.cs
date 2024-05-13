@@ -151,6 +151,62 @@ namespace GestionCitasRepositorys
             return servicioBuscado;
         }
 
+        public int GetTiempoEstimadoServicioById(int idServicio) 
+        {
+            int tiempoEstimado = 0;
+
+            using(NpgsqlConnection connection = new NpgsqlConnection(ConnectionString)) 
+            {
+                try
+                {
+                    connection.Open();
+
+                    using(NpgsqlCommand command = new NpgsqlCommand("SELECT * FROM obtener_tiempo_estimado_servicio_por_id(@id_servicio)", connection)) 
+                    {
+
+                        command.Parameters.AddWithValue("id_servicio", idServicio);
+
+                        tiempoEstimado = (int) command.ExecuteScalar();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    connection.Close();
+                    throw ex;
+                }
+            }
+
+            return tiempoEstimado;
+        }
+
+        public decimal GetPrecioServicioById(int idServicio)
+        {
+            decimal precio = 0;
+
+            using (NpgsqlConnection connection = new NpgsqlConnection(ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    using (NpgsqlCommand command = new NpgsqlCommand("SELECT * FROM obtener_precio_servicio_por_id(@id_servicio)", connection))
+                    {
+
+                        command.Parameters.AddWithValue("id_servicio", idServicio);
+
+                        precio = (decimal) command.ExecuteScalar();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    connection.Close();
+                    throw ex;
+                }
+            }
+
+            return precio;
+        }
+
         public List<Servicio> GetAllServicios() 
         {
             List<Servicio> servicios = new List<Servicio>();
