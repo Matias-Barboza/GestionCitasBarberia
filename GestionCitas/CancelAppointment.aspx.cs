@@ -18,9 +18,11 @@ namespace GestionCitas
         {
             if(!IsPostBack) 
             {
-                if ((bool) Session["turnoEncontrado"]) 
+                if (Request.QueryString["id"] != null) 
                 {
-                    Turno turno = (Turno) Session["turno"];
+                    _turnoController = new TurnoController();
+
+                    Turno turno = _turnoController.GetTurnoById(Convert.ToInt32(Request.QueryString["id"].ToString()));
 
                     TextBoxDate.Text = turno.FechaYHora.Date.ToShortDateString();
                     TextBoxHour.Text = turno.FechaYHora.Hour > 12 ? turno.FechaYHora.Hour.ToString() + ":00 AM" : turno.FechaYHora.Hour.ToString() + ":00 PM";
@@ -32,15 +34,15 @@ namespace GestionCitas
 
         protected void btnCancelAppointment_Click(object sender, EventArgs e)
         {
-            if ((bool) Session["turnoEncontrado"]) 
+            if (Request.QueryString["id"] != null)
             {
                 _turnoController = new TurnoController();
 
-                Turno turno = (Turno) Session["turno"];
+                Turno turno = _turnoController.GetTurnoById(Convert.ToInt32(Request.QueryString["id"].ToString()));
 
                 bool eliminated = _turnoController.DeleteTurno(turno.IdTurno);
 
-                if (eliminated) 
+                if (eliminated)
                 {
                     Response.Redirect("~/Default.aspx");
                 }

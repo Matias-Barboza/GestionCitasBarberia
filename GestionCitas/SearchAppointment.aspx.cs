@@ -31,10 +31,7 @@ namespace GestionCitas
 
                 if(turno != null)
                 {
-                    Session.Add("turnoEncontrado", true);
-                    Session.Add("turno", turno);
-
-                    Response.Redirect("~/CancelAppointment.aspx");
+                    Response.Redirect($"~/CancelAppointment.aspx?id={id}");
                 }
             }
             // Si no pudo ser convertido, enviar msj al usuario de su error
