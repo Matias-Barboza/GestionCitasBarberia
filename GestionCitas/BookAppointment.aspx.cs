@@ -13,15 +13,15 @@ namespace GestionCitas
 {
     public partial class BookAppointment : System.Web.UI.Page
     {
-        private TurnoController turnoController;
-        private BarberoController barberoController;
-        private ServicioController servicioController;
+        private TurnoController _turnoController;
+        private BarberoController _barberoController;
+        private ServicioController _servicioController;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            turnoController = new TurnoController();
-            barberoController = new BarberoController();
-            servicioController = new ServicioController();
+            _turnoController = new TurnoController();
+            _barberoController = new BarberoController();
+            _servicioController = new ServicioController();
 
             if (!IsPostBack)
             {
@@ -61,7 +61,7 @@ namespace GestionCitas
 
         private void LoadBarbers()
         {
-            List<string> barbersFullNames = barberoController.GetAllBarberosFullNames();
+            List<string> barbersFullNames = _barberoController.GetAllBarberosFullNames();
 
             BarbersDropDownList.Items.Add(new ListItem("Seleccione una opción..."));
 
@@ -73,7 +73,7 @@ namespace GestionCitas
 
         private void LoadServices()
         {
-            List<string> services = servicioController.GetAllServiciosDescription();
+            List<string> services = _servicioController.GetAllServiciosDescription();
 
             ServicesDropDownList.Items.Add(new ListItem("Seleccione una opción..."));
 
@@ -102,7 +102,7 @@ namespace GestionCitas
         public List<string> GetAllHoursAvailables(DateTime fecha, string nombreBarbero)
         {
             Dictionary<string, TimeSpan> allHours = GetAllHours(fecha.DayOfWeek == DayOfWeek.Saturday);
-            List<TimeSpan> hoursNotAvailables = turnoController.GetAllHoursNotAvailablesOf(fecha, nombreBarbero);
+            List<TimeSpan> hoursNotAvailables = _turnoController.GetAllHoursNotAvailablesOf(fecha, nombreBarbero);
             List<string> hoursAvailables = null;
 
             // Encuentro los horarios no disponibles, y los elimino de todos los horarios, quedando unicamente los disponibles
@@ -159,7 +159,7 @@ namespace GestionCitas
             nuevoTurno.TelefonoCliente = TelTextBox.Text;
             nuevoTurno.EmailCliente = EmailTextBox.Text;
 
-            bool created = turnoController.CreateTurno(nuevoTurno);
+            bool created = _turnoController.CreateTurno(nuevoTurno);
 
             if (created)
             {
@@ -184,8 +184,8 @@ namespace GestionCitas
                 return;
             }
 
-            EstimatedTimeTextBox.Text = servicioController.GetTiempoEstimadoServicioById(ServicesDropDownList.SelectedIndex).ToString() + " min";
-            AmountTextBox.Text = servicioController.GetPrecioServicioById(ServicesDropDownList.SelectedIndex).ToString() + " $";
+            EstimatedTimeTextBox.Text = _servicioController.GetTiempoEstimadoServicioById(ServicesDropDownList.SelectedIndex).ToString() + " min";
+            AmountTextBox.Text = _servicioController.GetPrecioServicioById(ServicesDropDownList.SelectedIndex).ToString() + " $";
         }
     }
 }

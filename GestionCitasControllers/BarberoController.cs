@@ -8,9 +8,9 @@ namespace GestionCitasControllers
 {
     public class BarberoController
     {
-        private BarberoRepository barberoRepository;
+        private BarberoRepository _barberoRepository;
 
-        public BarberoRepository BarberoRepository { get => barberoRepository; set => barberoRepository = value; }
+        public BarberoRepository BarberoRepository { get => _barberoRepository; set => _barberoRepository = value; }
 
         public BarberoController() 
         {
@@ -46,7 +46,7 @@ namespace GestionCitasControllers
                 return created;
             }
 
-            created = barberoRepository.CreateNewBarbero(barbero);
+            created = _barberoRepository.CreateNewBarbero(barbero);
 
             return created;
         }
@@ -60,7 +60,7 @@ namespace GestionCitasControllers
                 return updated;
             }
 
-            updated = barberoRepository.UpdateBarbero(barbero);
+            updated = _barberoRepository.UpdateBarbero(barbero);
 
             return updated;
         }
@@ -74,7 +74,7 @@ namespace GestionCitasControllers
                 return deleted;
             }
 
-            deleted = barberoRepository.DeleteBarbero(idBarbero);
+            deleted = _barberoRepository.DeleteBarbero(idBarbero);
 
             return deleted;
         }
@@ -86,17 +86,17 @@ namespace GestionCitasControllers
                 return null;
             }
 
-            return barberoRepository.GetBarberoById(idBarbero);
+            return _barberoRepository.GetBarberoById(idBarbero);
         }
 
         public List<Barbero> GetAllBarberos() 
         {
-            return barberoRepository.GetAllBarberos();
+            return _barberoRepository.GetAllBarberos();
         }
 
         public List<string> GetAllBarberosFullNames() 
         {
-            return barberoRepository.GetAllBarberosFullNames();
+            return _barberoRepository.GetAllBarberosFullNames();
         }
     }
 }

@@ -2,15 +2,15 @@
 {
     public class Barbero
     {
-        private int id;
-        private string nombre;
-        private string apellido;
-        private string email;
+        private int _id;
+        private string _nombre;
+        private string _apellido;
+        private string _email;
 
-        public int Id { get => id; set => id = value; }
-        public string Nombre { get => nombre; set => nombre = value; }
-        public string Apellido { get => apellido; set => apellido = value; }
+        public int Id { get => _id; set => _id = value; }
+        public string Nombre { get => _nombre; set => _nombre = value; }
+        public string Apellido { get => _apellido; set => _apellido = value; }
         public string NombreCompleto { get => $"{Nombre} {Apellido}"; set => NombreCompleto = value; }
-        public string Email { get => email; set => email = value; }
+        public string Email { get => _email; set => _email = value; }
     }
 }

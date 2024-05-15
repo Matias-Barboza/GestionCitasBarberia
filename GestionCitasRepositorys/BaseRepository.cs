@@ -6,9 +6,9 @@ namespace GestionCitasRepositorys
 {
     public abstract class BaseRepository
     {
-        private string connectionString;
+        private string _connectionString;
 
-        public string ConnectionString { get => connectionString; set => connectionString = value; }
+        public string ConnectionString { get => _connectionString; set => _connectionString = value; }
 
         public BaseRepository()
         {

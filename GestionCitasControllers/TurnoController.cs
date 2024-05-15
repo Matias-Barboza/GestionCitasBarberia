@@ -9,9 +9,9 @@ namespace GestionCitasControllers
 {
     public class TurnoController
     {
-        private TurnoRepository turnoRepository;
+        private TurnoRepository _turnoRepository;
 
-        public TurnoRepository TurnoRepository { get => turnoRepository; set => turnoRepository = value; }
+        public TurnoRepository TurnoRepository { get => _turnoRepository; set => _turnoRepository = value; }
 
         public TurnoController() 
         {
@@ -47,7 +47,7 @@ namespace GestionCitasControllers
                 return created;
             }
 
-            created = turnoRepository.CreateTurno(turno);
+            created = _turnoRepository.CreateTurno(turno);
 
             return created;
         }
@@ -61,7 +61,7 @@ namespace GestionCitasControllers
                 return updated;
             }
 
-            updated = turnoRepository.UpdateTurno(turno);
+            updated = _turnoRepository.UpdateTurno(turno);
 
             return updated;
         }
@@ -75,7 +75,7 @@ namespace GestionCitasControllers
                 return false;
             }
 
-            eliminated = turnoRepository.DeleteTurno(idTurno);
+            eliminated = _turnoRepository.DeleteTurno(idTurno);
 
             return eliminated;
         }
@@ -87,22 +87,22 @@ namespace GestionCitasControllers
                 return null;
             }
 
-            return turnoRepository.GetTurnoById(idTurno);
+            return _turnoRepository.GetTurnoById(idTurno);
         }
 
         public List<Turno> GetAllTurnos() 
         {
-            return turnoRepository.GetAllTurnos();
+            return _turnoRepository.GetAllTurnos();
         }
 
         public List<TimeSpan> GetAllHoursNotAvailablesOf(DateTime fecha, string nombreBarbero) 
         {
-            return turnoRepository.GetHourNotAvailablesOf(fecha, nombreBarbero);
+            return _turnoRepository.GetHourNotAvailablesOf(fecha, nombreBarbero);
         }
 
         public bool SuccessConnection() 
         {
-            int result = turnoRepository.TestConnection();
+            int result = _turnoRepository.TestConnection();
 
             return result == 1;
         }

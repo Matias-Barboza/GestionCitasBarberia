@@ -8,9 +8,9 @@ namespace GestionCitasControllers
 {
     public class ServicioController
     {
-        private ServicioRepository servicioRepository;
+        private ServicioRepository _servicioRepository;
 
-        public ServicioRepository ServicioRepository { get => servicioRepository; set => servicioRepository = value; }
+        public ServicioRepository ServicioRepository { get => _servicioRepository; set => _servicioRepository = value; }
 
         public ServicioController()
         {
@@ -47,7 +47,7 @@ namespace GestionCitasControllers
                 return created;
             }
 
-            created = servicioRepository.CreateService(servicio);
+            created = _servicioRepository.CreateService(servicio);
 
             return created;
         }
@@ -61,7 +61,7 @@ namespace GestionCitasControllers
                 return updated;
             }
 
-            updated = servicioRepository.UpdateServicio(servicio);
+            updated = _servicioRepository.UpdateServicio(servicio);
 
             return updated;
         }
@@ -75,7 +75,7 @@ namespace GestionCitasControllers
                 return deleted;
             }
 
-            deleted = servicioRepository.DeleteServicio(idServicio);
+            deleted = _servicioRepository.DeleteServicio(idServicio);
 
             return deleted;
         }
@@ -87,27 +87,27 @@ namespace GestionCitasControllers
                 return null;
             }
 
-            return servicioRepository.GetServicioById(idServicio);
+            return _servicioRepository.GetServicioById(idServicio);
         }
 
         public int GetTiempoEstimadoServicioById(int idServicio) 
         {
-            return servicioRepository.GetTiempoEstimadoServicioById(idServicio);
+            return _servicioRepository.GetTiempoEstimadoServicioById(idServicio);
         }
 
         public decimal GetPrecioServicioById(int idServicio) 
         {
-            return servicioRepository.GetPrecioServicioById(idServicio);
+            return _servicioRepository.GetPrecioServicioById(idServicio);
         }
 
         public List<Servicio> GetAllServicios()
         {
-            return servicioRepository.GetAllServicios();
+            return _servicioRepository.GetAllServicios();
         }
 
         public List<string> GetAllServiciosDescription()
         {
-            return servicioRepository.GetAllServiciosDescription();
+            return _servicioRepository.GetAllServiciosDescription();
         }
     }
 }

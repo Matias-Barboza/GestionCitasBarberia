@@ -12,7 +12,7 @@ namespace GestionCitas
 {
     public partial class CancelAppointment : System.Web.UI.Page
     {
-        TurnoController turnoController;
+        TurnoController _turnoController;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -21,13 +21,13 @@ namespace GestionCitas
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            TurnoController turnoController = new TurnoController();
+            _turnoController = new TurnoController();
 
             bool converted = int.TryParse(TextBoxIdTurno.Text, out int id);
 
             if(converted) 
             {
-                Turno turno = turnoController.GetTurnoById(id);
+                Turno turno = _turnoController.GetTurnoById(id);
 
                 if(turno != null)
                 {

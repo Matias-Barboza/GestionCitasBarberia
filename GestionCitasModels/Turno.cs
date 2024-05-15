@@ -4,24 +4,24 @@ namespace GestionCitasModels
 {
     public class Turno
     {
-        private int idTurno;
-        private Servicio servicio;
-        private Barbero barbero;
-        private DateTime fechaYHora;
-        private string nombreCliente;
-        private string apellidoCliente;
-        private string telefonoCliente;
-        private string emailCliente;
+        private int _idTurno;
+        private Servicio _servicio;
+        private Barbero _barbero;
+        private DateTime _fechaYHora;
+        private string _nombreCliente;
+        private string _apellidoCliente;
+        private string _telefonoCliente;
+        private string _emailCliente;
 
-        public int IdTurno { get => idTurno; set => idTurno = value; }
-        public Servicio Servicio { get => servicio; set => servicio = value; }
-        public Barbero Barbero { get => barbero; set => barbero = value; }
-        public DateTime FechaYHora { get => fechaYHora; set => fechaYHora = value; }
-        public string NombreCliente { get => nombreCliente; set => nombreCliente = value; }
-        public string ApellidoCliente { get => apellidoCliente; set => apellidoCliente = value; }
+        public int IdTurno { get => _idTurno; set => _idTurno = value; }
+        public Servicio Servicio { get => _servicio; set => _servicio = value; }
+        public Barbero Barbero { get => _barbero; set => _barbero = value; }
+        public DateTime FechaYHora { get => _fechaYHora; set => _fechaYHora = value; }
+        public string NombreCliente { get => _nombreCliente; set => _nombreCliente = value; }
+        public string ApellidoCliente { get => _apellidoCliente; set => _apellidoCliente = value; }
         public string NombreCompletoCliente { get => $"{NombreCliente} {ApellidoCliente}"; set => NombreCompletoCliente = value; }
-        public string TelefonoCliente { get => telefonoCliente; set => telefonoCliente = value; }
-        public string EmailCliente { get => emailCliente; set => emailCliente = value; }
+        public string TelefonoCliente { get => _telefonoCliente; set => _telefonoCliente = value; }
+        public string EmailCliente { get => _emailCliente; set => _emailCliente = value; }
 
         public Turno() 
         {

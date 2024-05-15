@@ -12,7 +12,7 @@ namespace GestionCitas
 {
     public partial class CancelAppointement : System.Web.UI.Page
     {
-        TurnoController turnoController;
+        TurnoController _turnoController;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -34,11 +34,11 @@ namespace GestionCitas
         {
             if ((bool) Session["turnoEncontrado"]) 
             {
-                turnoController = new TurnoController();
+                _turnoController = new TurnoController();
 
                 Turno turno = (Turno) Session["turno"];
 
-                bool eliminated = turnoController.DeleteTurno(turno.IdTurno);
+                bool eliminated = _turnoController.DeleteTurno(turno.IdTurno);
 
                 if (eliminated) 
                 {
