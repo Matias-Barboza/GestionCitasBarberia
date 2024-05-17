@@ -91,18 +91,41 @@
 
                         </div>
 
-                        <div class="input-data-column">
+                    </div>
 
-                            <asp:Label Text="Barbero:" runat="server" for="barber" CssClass="form-label" />
-                            <asp:DropDownList name="barber" ID="BarbersDropDownList" runat="server" CssClass="form-control" required="true" AutoPostBack="true" 
-                                OnSelectedIndexChanged="BarbersDropDownList_SelectedIndexChanged"></asp:DropDownList>
+                </div>
 
-                        </div>
+                <div class="input-data-row">
+
+                    <div class="input-data-row">
+
+                        <asp:Repeater runat="server" ID="barbersRepeater">
+                            <ItemTemplate>
+                                <div class="container-barber">
+                                    <img src="/imgs/barber2-face.png" alt="Alternate Text"  class="img-barber-face"/>
+                                    <h5 class="barber-name-turno"><%#Eval("NombreCompleto")%></h5>
+                                    <asp:RadioButton Text="" runat="server" GroupName="barberChoice"/>
+                                </div>
+                            </ItemTemplate>
+                        </asp:Repeater>
 
                     </div>
 
+                </div>
+
+                <div class="input-data-row">
+
                     <%-- COLUMNA DE SERVICIO, BARBERO, TIEMPO ESTIMADO Y PRECIO FINAL --%>
                     <div class="input-data-column-wsp">
+
+                        <div class="input-data-column">
+
+                            <asp:Label Text="Barbero:" runat="server" for="barber" CssClass="form-label" />
+                            <asp:DropDownList name="barber" ID="BarbersDropDownList" runat="server" CssClass="form-control" required="true" AutoPostBack="true"
+                                OnSelectedIndexChanged="BarbersDropDownList_SelectedIndexChanged">
+                            </asp:DropDownList>
+
+                        </div>
 
                         <div class="input-data-column">
 
@@ -115,7 +138,8 @@
 
                             <asp:Label Text="Servicio:" runat="server" for="service" CssClass="form-label" />
                             <asp:DropDownList name="service" ID="ServicesDropDownList" runat="server" CssClass="form-control" required="true" AutoPostBack="true"
-                                OnSelectedIndexChanged="ServicesDropDownList_SelectedIndexChanged"></asp:DropDownList>
+                                OnSelectedIndexChanged="ServicesDropDownList_SelectedIndexChanged">
+                            </asp:DropDownList>
 
                         </div>
 

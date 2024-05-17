@@ -249,6 +249,26 @@
     font-size: 16px;
     font-weight: 400;
 }
+.container-barber {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.img-barber-face {
+    width: 80px;
+    height: 80px;
+    border: 2px solid var(--details-color);
+    border-radius: 50%;
+}
+.barber-name-turno {
+    color: #BABABA;
+    font-size: 20px;
+    font-weight: 400;
+    padding-bottom: 5px;
+}
 .form-control {
     width: 100%;
     color: #BABABA;

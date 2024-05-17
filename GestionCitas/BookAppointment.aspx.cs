@@ -26,10 +26,25 @@ namespace GestionCitas
             if (!IsPostBack)
             {
                 Calendar.SelectedDate = DateTime.Today;
-                LoadBarbers();
+                //LoadBarbers();
                 LoadHoursFor(Calendar.SelectedDate, BarbersDropDownList.SelectedValue);
                 LoadServices();
             }
+
+            // Prueba de Repeater
+            Barbero barbero = new Barbero();
+            Barbero barbero1 = new Barbero();
+
+            barbero.Nombre = "Matias";
+            barbero1.Nombre = "Alexis";
+
+            List<Barbero> barberos = new List<Barbero>();
+
+            barberos.Add(barbero);
+            barberos.Add(barbero1);
+
+            barbersRepeater.DataSource = barberos;
+            barbersRepeater.DataBind();
         }
 
         //------------------------------------------------------- MÉTODOS ---------------------------------------------------------------
