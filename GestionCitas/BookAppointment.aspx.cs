@@ -27,7 +27,7 @@ namespace GestionCitas
             {
                 Calendar.SelectedDate = DateTime.Today;
                 //LoadBarbers();
-                LoadHoursFor(Calendar.SelectedDate, BarbersDropDownList.SelectedValue);
+                //LoadHoursFor(Calendar.SelectedDate, BarbersDropDownList.SelectedValue);
                 LoadServices();
             }
 
@@ -35,6 +35,8 @@ namespace GestionCitas
             Barbero barbero = new Barbero();
             Barbero barbero1 = new Barbero();
 
+            barbero.Id = 0;
+            barbero1.Id = 1;
             barbero.Nombre = "Matias";
             barbero1.Nombre = "Alexis";
 
@@ -74,17 +76,17 @@ namespace GestionCitas
             }
         }
 
-        private void LoadBarbers()
-        {
-            List<string> barbersFullNames = _barberoController.GetAllBarberosFullNames();
+        //private void LoadBarbers()
+        //{
+        //    List<string> barbersFullNames = _barberoController.GetAllBarberosFullNames();
 
-            BarbersDropDownList.Items.Add(new ListItem("Seleccione una opción..."));
+        //    BarbersDropDownList.Items.Add(new ListItem("Seleccione una opción..."));
 
-            foreach (string fullName in barbersFullNames)
-            {
-                BarbersDropDownList.Items.Add(fullName);
-            }
-        }
+        //    foreach (string fullName in barbersFullNames)
+        //    {
+        //        BarbersDropDownList.Items.Add(fullName);
+        //    }
+        //}
 
         private void LoadServices()
         {
@@ -150,7 +152,7 @@ namespace GestionCitas
             Turno nuevoTurno = new Turno();
 
             // Informacion básica del turno (Barbero elegido y servicio seleccionado)
-            nuevoTurno.Barbero.Id = BarbersDropDownList.SelectedIndex;
+            //nuevoTurno.Barbero.Id = BarbersDropDownList.SelectedIndex;
             nuevoTurno.Servicio.Id = ServicesDropDownList.SelectedIndex;
 
             // Mapeo fecha y hora en base al calendario (Calendar) y a los horarios disponibles (HoursDropDownList)
@@ -184,12 +186,12 @@ namespace GestionCitas
 
         protected void Calendar_SelectionChanged(object sender, EventArgs e)
         {
-            LoadHoursFor(Calendar.SelectedDate, BarbersDropDownList.SelectedValue);
+            //LoadHoursFor(Calendar.SelectedDate, BarbersDropDownList.SelectedValue);
         }
 
         protected void BarbersDropDownList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadHoursFor(Calendar.SelectedDate, BarbersDropDownList.SelectedValue);
+            //LoadHoursFor(Calendar.SelectedDate, BarbersDropDownList.SelectedValue);
         }
 
         protected void ServicesDropDownList_SelectedIndexChanged(object sender, EventArgs e)
@@ -201,6 +203,16 @@ namespace GestionCitas
 
             EstimatedTimeTextBox.Text = _servicioController.GetTiempoEstimadoServicioById(ServicesDropDownList.SelectedIndex).ToString() + " min";
             AmountTextBox.Text = _servicioController.GetPrecioServicioById(ServicesDropDownList.SelectedIndex).ToString() + " $";
+        }
+
+        protected void barbersRepeater_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                RadioButton rbt = (RadioButton)e.Item.FindControl("BarberRadioButton");
+                string setUniqueRadioButton = "SetUniqueRadioButton('barbersRepeater.*BarberChoice', this);";
+                rbt.Attributes.Add("onclick", setUniqueRadioButton);
+            }
         }
     }
 }

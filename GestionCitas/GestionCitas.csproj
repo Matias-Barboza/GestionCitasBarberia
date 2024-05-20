@@ -70,6 +70,7 @@
   <ItemGroup>
     <Content Include="BookAppointment.aspx" />
     <Content Include="CancelAppointment.aspx" />
+    <Content Include="js\script.js" />
     <Content Include="SearchAppointment.aspx" />
     <Content Include="css\styles.css" />
     <Content Include="Default.aspx" />

@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="BookAppointment.aspx.cs" Inherits="GestionCitas.BookAppointment" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script src="js/script.js"></script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -97,17 +98,22 @@
 
                 <div class="input-data-row">
 
-                    <div class="input-data-row">
+                    <div class="input-data-column">
 
-                        <asp:Repeater runat="server" ID="barbersRepeater">
-                            <ItemTemplate>
-                                <div class="container-barber">
-                                    <img src="/imgs/barber2-face.png" alt="Alternate Text"  class="img-barber-face"/>
-                                    <h5 class="barber-name-turno"><%#Eval("NombreCompleto")%></h5>
-                                    <asp:RadioButton Text="" runat="server" GroupName="barberChoice"/>
-                                </div>
-                            </ItemTemplate>
-                        </asp:Repeater>
+                        <asp:Label Text="Barbero:" runat="server" for="barber" CssClass="form-label" />
+                        <div class="input-data-row">
+
+                            <asp:Repeater runat="server" ID="barbersRepeater" OnItemDataBound="barbersRepeater_ItemDataBound">
+                                <ItemTemplate>
+                                    <div class="container-barber">
+                                        <img src="/imgs/barber2-face.png" alt="Alternate Text" class="img-barber-face" />
+                                        <h5 class="barber-name-turno"><%#Eval("NombreCompleto")%></h5>
+                                        <asp:RadioButton ID="BarberRadioButton" GroupName="BarberChoice" Text="" runat="server" />
+                                    </div>
+                                </ItemTemplate>
+                            </asp:Repeater>
+
+                        </div>
 
                     </div>
 
@@ -117,15 +123,6 @@
 
                     <%-- COLUMNA DE SERVICIO, BARBERO, TIEMPO ESTIMADO Y PRECIO FINAL --%>
                     <div class="input-data-column-wsp">
-
-                        <div class="input-data-column">
-
-                            <asp:Label Text="Barbero:" runat="server" for="barber" CssClass="form-label" />
-                            <asp:DropDownList name="barber" ID="BarbersDropDownList" runat="server" CssClass="form-control" required="true" AutoPostBack="true"
-                                OnSelectedIndexChanged="BarbersDropDownList_SelectedIndexChanged">
-                            </asp:DropDownList>
-
-                        </div>
 
                         <div class="input-data-column">
 
