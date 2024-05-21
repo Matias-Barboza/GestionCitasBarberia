@@ -10,6 +10,7 @@ namespace GestionCitasModels
         private DateTime _fechaYHora;
         private string _nombreCliente;
         private string _apellidoCliente;
+        private string _nombreCompletoCliente;
         private string _telefonoCliente;
         private string _emailCliente;
 
@@ -19,7 +20,7 @@ namespace GestionCitasModels
         public DateTime FechaYHora { get => _fechaYHora; set => _fechaYHora = value; }
         public string NombreCliente { get => _nombreCliente; set => _nombreCliente = value; }
         public string ApellidoCliente { get => _apellidoCliente; set => _apellidoCliente = value; }
-        public string NombreCompletoCliente { get => $"{NombreCliente} {ApellidoCliente}"; set => NombreCompletoCliente = value; }
+        public string NombreCompletoCliente { get => _nombreCompletoCliente; set => _nombreCompletoCliente = value; }
         public string TelefonoCliente { get => _telefonoCliente; set => _telefonoCliente = value; }
         public string EmailCliente { get => _emailCliente; set => _emailCliente = value; }
 

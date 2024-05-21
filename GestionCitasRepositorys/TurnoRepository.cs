@@ -48,7 +48,7 @@ namespace GestionCitasRepositorys
                     }
 
                     // Si el numero de filas de antes + 1, es igual al numero de filas despues, asigno TRUE (creado) si no FALSE
-                    created = (rowsBeforeOperation + 1) == rowsAfterOperation ? true : false;
+                    created = (rowsBeforeOperation + 1) == rowsAfterOperation;
                 }
                 catch (Exception ex)
                 {

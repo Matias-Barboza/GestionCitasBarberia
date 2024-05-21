@@ -38,7 +38,7 @@ namespace GestionCitasRepositorys
                         rowsBeforeOperation = (int)(long)command.ExecuteScalar();
                     }
 
-                    created = (rowsBeforeOperation + 1) == rowsAfterOperation ? true : false;
+                    created = (rowsBeforeOperation + 1) == rowsAfterOperation;
                 }
                 catch (Exception ex)
                 {

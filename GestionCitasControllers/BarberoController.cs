@@ -98,5 +98,10 @@ namespace GestionCitasControllers
         {
             return _barberoRepository.GetAllBarberosFullNames();
         }
+
+        public List<Barbero> GetAllBarberosFullNamesAndImageUrl()
+        {
+            return _barberoRepository.GetAllBarberosFullNamesAndImageUrl();
+        }
     }
 }

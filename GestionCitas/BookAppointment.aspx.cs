@@ -16,6 +16,8 @@ namespace GestionCitas
         private TurnoController _turnoController;
         private BarberoController _barberoController;
         private ServicioController _servicioController;
+        private string _lastSelectedBarber;
+        private int _lastSelectedNumberBarber;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -25,28 +27,13 @@ namespace GestionCitas
 
             if (!IsPostBack)
             {
+                _lastSelectedBarber = "";
+
                 Calendar.SelectedDate = DateTime.Today;
-                //LoadBarbers();
-                //LoadHoursFor(Calendar.SelectedDate, BarbersDropDownList.SelectedValue);
+                LoadBarbers();
+                LoadHoursFor(Calendar.SelectedDate, _lastSelectedBarber);
                 LoadServices();
             }
-
-            // Prueba de Repeater
-            Barbero barbero = new Barbero();
-            Barbero barbero1 = new Barbero();
-
-            barbero.Id = 0;
-            barbero1.Id = 1;
-            barbero.Nombre = "Matias";
-            barbero1.Nombre = "Alexis";
-
-            List<Barbero> barberos = new List<Barbero>();
-
-            barberos.Add(barbero);
-            barberos.Add(barbero1);
-
-            barbersRepeater.DataSource = barberos;
-            barbersRepeater.DataBind();
         }
 
         //------------------------------------------------------- MÉTODOS ---------------------------------------------------------------
@@ -76,17 +63,12 @@ namespace GestionCitas
             }
         }
 
-        //private void LoadBarbers()
-        //{
-        //    List<string> barbersFullNames = _barberoController.GetAllBarberosFullNames();
+        private void LoadBarbers()
+        {
+            barbersRepeater.DataSource = _barberoController.GetAllBarberosFullNamesAndImageUrl();
 
-        //    BarbersDropDownList.Items.Add(new ListItem("Seleccione una opción..."));
-
-        //    foreach (string fullName in barbersFullNames)
-        //    {
-        //        BarbersDropDownList.Items.Add(fullName);
-        //    }
-        //}
+            barbersRepeater.DataBind();
+        }
 
         private void LoadServices()
         {
@@ -152,7 +134,14 @@ namespace GestionCitas
             Turno nuevoTurno = new Turno();
 
             // Informacion básica del turno (Barbero elegido y servicio seleccionado)
-            //nuevoTurno.Barbero.Id = BarbersDropDownList.SelectedIndex;
+            int idBarber = Session["lastSelectedNumberBarber"] != null ? Convert.ToInt32(Session["lastSelectedNumberBarber"].ToString()) : 0;
+
+            if(idBarber == 0) 
+            {
+                return;
+            }
+
+            nuevoTurno.Barbero.Id = idBarber;
             nuevoTurno.Servicio.Id = ServicesDropDownList.SelectedIndex;
 
             // Mapeo fecha y hora en base al calendario (Calendar) y a los horarios disponibles (HoursDropDownList)
@@ -186,12 +175,9 @@ namespace GestionCitas
 
         protected void Calendar_SelectionChanged(object sender, EventArgs e)
         {
-            //LoadHoursFor(Calendar.SelectedDate, BarbersDropDownList.SelectedValue);
-        }
+            _lastSelectedBarber = Session["lastSelectedBarber"] != null ? Session["lastSelectedBarber"].ToString() : "";
 
-        protected void BarbersDropDownList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //LoadHoursFor(Calendar.SelectedDate, BarbersDropDownList.SelectedValue);
+            LoadHoursFor(Calendar.SelectedDate, _lastSelectedBarber);
         }
 
         protected void ServicesDropDownList_SelectedIndexChanged(object sender, EventArgs e)
@@ -213,6 +199,29 @@ namespace GestionCitas
                 string setUniqueRadioButton = "SetUniqueRadioButton('barbersRepeater.*BarberChoice', this);";
                 rbt.Attributes.Add("onclick", setUniqueRadioButton);
             }
+        }
+
+        protected void BarberRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton radioButton = (RadioButton) sender;
+
+            if (!radioButton.Checked) 
+            {
+                return;
+            }
+
+            RepeaterItem parent = (RepeaterItem)radioButton.Parent;
+
+            Label labelName = (Label) parent.FindControl("barberName");
+            Label labelNumber = (Label) parent.FindControl("barberNumber");
+
+            _lastSelectedBarber = labelName.Text;
+            _lastSelectedNumberBarber = Convert.ToInt32(labelNumber.Text);
+
+            Session.Add("lastSelectedBarber", _lastSelectedBarber);
+            Session.Add("lastSelectedNumberBarber", _lastSelectedNumberBarber);
+
+            LoadHoursFor(Calendar.SelectedDate, _lastSelectedBarber);
         }
     }
 }

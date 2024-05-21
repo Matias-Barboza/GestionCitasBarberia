@@ -43,7 +43,7 @@ namespace GestionCitasRepositorys
                     }
 
                     // Si el numero de filas de antes + 1, es igual al numero de filas despues, asigno TRUE (creado) si no FALSE
-                    created = (rowsBeforeOperation + 1) == rowsAfterOperation ? true : false;
+                    created = (rowsBeforeOperation + 1) == rowsAfterOperation;
                 }
                 catch (Exception ex)
                 {
@@ -218,10 +218,10 @@ namespace GestionCitasRepositorys
                         using (NpgsqlDataReader reader = command.ExecuteReader())
                         {
                             fullNames = new List<string>();
-                            
+
                             while (reader.Read())
                             {
-                                fullNames.Add((string) reader[0]);
+                                fullNames.Add((string)reader[0]);
                             }
                         }
                     }
@@ -234,6 +234,47 @@ namespace GestionCitasRepositorys
             }
 
             return fullNames;
+        }
+
+        public List<Barbero> GetAllBarberosFullNamesAndImageUrl()
+        {
+            List<Barbero> barbers = null;
+
+            using (NpgsqlConnection connection = new NpgsqlConnection(ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    using (NpgsqlCommand command = new NpgsqlCommand("SELECT * FROM lista_nombre_completo_e_imagen_barberos()", connection))
+                    {
+
+                        using (NpgsqlDataReader reader = command.ExecuteReader())
+                        {
+
+                            barbers = new List<Barbero>();
+
+                            while (reader.Read()) 
+                            {
+                                Barbero barber = new Barbero();
+
+                                barber.Id = (int) reader[0];
+                                barber.NombreCompleto = (string) reader[1];
+                                barber.UrlImagenRostro = (string) reader[2];
+
+                                barbers.Add(barber);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    connection.Close();
+                    throw ex;
+                }
+            }
+
+            return barbers;
         }
     }
 }

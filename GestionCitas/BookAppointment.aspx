@@ -101,14 +101,15 @@
                     <div class="input-data-column">
 
                         <asp:Label Text="Barbero:" runat="server" for="barber" CssClass="form-label" />
-                        <div class="input-data-row">
+                        <div class="input-data-row-barbers-choice">
 
                             <asp:Repeater runat="server" ID="barbersRepeater" OnItemDataBound="barbersRepeater_ItemDataBound">
                                 <ItemTemplate>
                                     <div class="container-barber">
-                                        <img src="/imgs/barber2-face.png" alt="Alternate Text" class="img-barber-face" />
-                                        <h5 class="barber-name-turno"><%#Eval("NombreCompleto")%></h5>
-                                        <asp:RadioButton ID="BarberRadioButton" GroupName="BarberChoice" Text="" runat="server" />
+                                        <img src='<%#Eval("UrlImagenRostro") %>' alt="Alternate Text" class="img-barber-face" />
+                                        <asp:Label ID="barberName" Text='<%#Eval("NombreCompleto")%>' CssClass="barber-name-turno" runat="server" />
+                                        <asp:Label ID="barberNumber" Text='<%#Eval("Id")%>' CssClass="barber-number-turno" runat="server" />
+                                        <asp:RadioButton ID="BarberRadioButton" GroupName="BarberChoice" Text="" runat="server" OnCheckedChanged="BarberRadioButton_CheckedChanged" AutoPostBack="true"/>
                                     </div>
                                 </ItemTemplate>
                             </asp:Repeater>
